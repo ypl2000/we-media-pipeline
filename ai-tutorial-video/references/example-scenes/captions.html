@@ -1,0 +1,70 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    /* 底部字幕: 按旁白子句分组, 时间戳来自 edge-tts WordBoundary */
+    .caption {
+      position: absolute;
+      bottom: 300px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 60;
+    }
+    .caption span {
+      display: inline-block;
+      max-width: 900px;
+      padding: 16px 32px;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.72);
+      color: #fff;
+      font-family: "YaHeiBold", "YaHei", sans-serif;
+      font-size: 46px;
+      font-weight: 900;
+      line-height: 1.5;
+      text-align: center;
+      will-change: transform, opacity;
+    }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div id="cg-1" class="caption clip caption-group" data-start="0.12" data-duration="4.28" data-track-index="1" data-track-kind="captions"><span>你以为 AI 在读你写的字</span></div>
+    <div id="cg-2" class="caption clip caption-group" data-start="4.4" data-duration="4.35" data-track-index="1" data-track-kind="captions"><span>其实它看到的是一堆词块</span></div>
+    <div id="cg-3" class="caption clip caption-group" data-start="8.75" data-duration="2.16" data-track-index="1" data-track-kind="captions"><span>模型不认识单字</span></div>
+    <div id="cg-4" class="caption clip caption-group" data-start="10.91" data-duration="2.17" data-track-index="1" data-track-kind="captions"><span>只认识词块</span></div>
+    <div id="cg-5" class="caption clip caption-group" data-start="13.08" data-duration="1.05" data-track-index="1" data-track-kind="captions"><span>一句话</span></div>
+    <div id="cg-6" class="caption clip caption-group" data-start="14.13" data-duration="3.47" data-track-index="1" data-track-kind="captions"><span>会被切成几个 token</span></div>
+    <div id="cg-7" class="caption clip caption-group" data-start="17.6" data-duration="2.9" data-track-index="1" data-track-kind="captions"><span>一个 token 大概多大</span></div>
+    <div id="cg-8" class="caption clip caption-group" data-start="20.5" data-duration="2.41" data-track-index="1" data-track-kind="captions"><span>英文四个字母算一个</span></div>
+    <div id="cg-9" class="caption clip caption-group" data-start="22.91" data-duration="3.83" data-track-index="1" data-track-kind="captions"><span>中文一个字要占一到两个</span></div>
+    <div id="cg-10" class="caption clip caption-group" data-start="26.74" data-duration="1.08" data-track-index="1" data-track-kind="captions"><span>记住</span></div>
+    <div id="cg-11" class="caption clip caption-group" data-start="27.82" data-duration="2.78" data-track-index="1" data-track-kind="captions"><span>token 就是 AI 眼里</span></div>
+    <div id="cg-12" class="caption clip caption-group" data-start="30.6" data-duration="2.09" data-track-index="1" data-track-kind="captions"><span>的最小积木</span></div>
+    <div id="cg-13" class="caption clip caption-group" data-start="32.69" data-duration="2.76" data-track-index="1" data-track-kind="captions"><span>关注 AI不够酷</span></div>
+    <div id="cg-14" class="caption clip caption-group" data-start="35.45" data-duration="5.97" data-track-index="1" data-track-kind="captions"><span>每天一个 AI 小知识</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#cg-1 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.12);
+    tl.fromTo("#cg-2 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 4.4);
+    tl.fromTo("#cg-3 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 8.75);
+    tl.fromTo("#cg-4 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 10.91);
+    tl.fromTo("#cg-5 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 13.08);
+    tl.fromTo("#cg-6 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 14.13);
+    tl.fromTo("#cg-7 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 17.6);
+    tl.fromTo("#cg-8 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 20.5);
+    tl.fromTo("#cg-9 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 22.91);
+    tl.fromTo("#cg-10 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 26.74);
+    tl.fromTo("#cg-11 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 27.82);
+    tl.fromTo("#cg-12 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 30.6);
+    tl.fromTo("#cg-13 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 32.69);
+    tl.fromTo("#cg-14 span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 35.45);
+
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

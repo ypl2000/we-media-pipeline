@@ -1,0 +1,144 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 38%, #ffffff 0%, #e9ecf1 78%);
+      overflow: hidden;
+    }
+    #nm-title {
+      position: absolute;
+      top: 380px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #141519;
+      font-size: 80px;
+      font-weight: 900;
+    }
+    .card {
+      position: absolute;
+      left: 90px;
+      width: 900px;
+      padding: 46px 50px;
+      border-radius: 32px;
+      background: #ffffff;
+      border: 2px solid #d6dae2;
+      box-shadow: 0 8px 28px rgba(20, 21, 25, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      will-change: transform, opacity;
+    }
+    #nm-card1 { top: 560px; }
+    #nm-card2 { top: 840px; }
+    .card .big {
+      color: #6f5700;
+      font-family: "YaHeiBold", "YaHei", sans-serif;
+      font-size: 110px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .card .desc {
+      color: #141519;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .card .desc small {
+      display: block;
+      color: #4b5260;
+      font-size: 36px;
+      font-weight: 400;
+      margin-top: 8px;
+    }
+    #nm-note {
+      position: absolute;
+      top: 1050px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #4b5260;
+      font-size: 34px;
+    }
+    #nm-why {
+      position: absolute;
+      top: 1180px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+    }
+    #nm-why span {
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: 999px;
+      background: rgba(255, 215, 0, 0.18);
+      border: 2px solid #d8a800;
+      color: #6f5700;
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: 6px;
+    }
+    .stat {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #141519;
+      font-size: 50px;
+      font-weight: 700;
+      will-change: transform, opacity;
+    }
+    #nm-stat1 { top: 1300px; }
+    #nm-stat2 { top: 1420px; }
+    .stat b {
+      color: #6f5700;
+      font-weight: 900;
+    }
+
+  </style>
+  <div id="root" data-composition-id="numbers" data-width="1080" data-height="1920">
+    <div id="nm-title" class="clip" data-start="0.3" data-duration="7.5" data-track-index="1">1 个 token 有多大？</div>
+
+    <div id="nm-card1" class="card clip" data-start="1.2" data-duration="6.6" data-track-index="2">
+      <div class="big">4</div>
+      <div class="desc">个英文字母 ≈ 1 个 token<small>hello = 1 个词块</small></div>
+    </div>
+
+    <div id="nm-card2" class="card clip" data-start="2.6" data-duration="5.2" data-track-index="3">
+      <div class="big">1~2</div>
+      <div class="desc">个 token ≈ 1 个汉字<small>中文比英文「更贵」</small></div>
+    </div>
+
+    <div id="nm-note" class="clip" data-start="4.0" data-duration="3.8" data-track-index="4">以主流大模型分词器为例，不同模型略有差异</div>
+
+    <div id="nm-why" class="clip" data-start="4.8" data-duration="3.0" data-track-index="5"><span>为什么重要</span></div>
+    <div id="nm-stat1" class="stat clip" data-start="5.4" data-duration="2.6" data-track-index="6">上下文窗口 = 能装 <b>多少 token</b></div>
+    <div id="nm-stat2" class="stat clip" data-start="6.2" data-duration="2.5" data-track-index="7">API 账单 = 按 <b>token 数量</b>计费</div>
+</div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo(
+      "#nm-title",
+      { opacity: 0, y: 24, filter: "blur(6px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power3.out" },
+      0.3
+    );
+
+    // 卡片滑入
+    tl.fromTo("#nm-card1", { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 1.2);
+    tl.fromTo("#nm-card1 .big", { scale: 0.4 }, { scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 1.55);
+    tl.fromTo("#nm-card2", { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 2.6);
+    tl.fromTo("#nm-card2 .big", { scale: 0.4 }, { scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 2.95);
+
+    tl.fromTo("#nm-note", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 4.0);
+    tl.fromTo("#nm-why span", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 4.8);
+    tl.fromTo("#nm-stat1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 5.4);
+    tl.fromTo("#nm-stat2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 6.2);
+
+    window.__timelines["numbers"] = tl;
+  </script>
+</template>

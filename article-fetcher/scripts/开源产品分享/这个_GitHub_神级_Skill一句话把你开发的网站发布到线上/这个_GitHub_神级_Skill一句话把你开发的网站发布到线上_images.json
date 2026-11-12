@@ -1,0 +1,123 @@
+[
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2HB7LlU0zR0NNk5ibuic0bHGhj3icQ0Dl6iaWjt92yBlouRUvXLeczrZ6B5qBaHlu347PmU2I5DtYnoicia6uLfcxoy7IvCufjIcvZc/640?wx_fmt=png&from=appmsg#imgIndex=0",
+    "index": 0,
+    "context_before": "之前给大家介绍过一个开源项目叫 PinMe。",
+    "context_after": "它能把你做好的一个静态网页、一张图片、或者任何本地文件，快速变成一个谁都能访问的公网链接。",
+    "width": 1080,
+    "height": 599,
+    "class": "rich_pages wxw-img",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU0ichrcatdO1789jAX4n8sWdNxbXMqBc6sWMQnqy1T7akqnuEMnLENrV0TaahzEz8on2e5ZLHghO58sbj5XhFsqOEdMX3Y60ibRY/640?wx_fmt=png&from=appmsg#imgIndex=1",
+    "index": 1,
+    "context_before": "它能把你做好的一个静态网页、一张图片、或者任何本地文件，快速变成一个谁都能访问的公网链接。",
+    "context_after": "最近它升级了，不仅推出了自己 Skill，还支持一行命令帮你搭好一个完整的 Web 应用。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU1osWae0wBnCenbHXwibMIzoJMkK3jFLm2Z7Cf3e2GdSCVnoCu3y29RNZ44wiaeXhCCic6VAXWibH1UBribnrtgQFwb0LjKEK0XTxag/640?wx_fmt=png&from=appmsg#imgIndex=2",
+    "index": 2,
+    "context_before": "最近它升级了，不仅推出了自己 Skill，还支持一行命令帮你搭好一个完整的 Web 应用。",
+    "context_after": "现在就是，你用自然语言描述完想要什么 App，AI Agent 写完代码之后直接帮你一键上线，你全程只管用自然语言提需求就行。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU06Mwdict7xVaFGNLEb9x0OricfonMuv3xALCNOfPFAAO0e3XkIibsoTG1P5k1G5eTeibd8JhVdRtLn57wxQKvbxG4tqo8RM8TqSic8/640?wx_fmt=png&from=appmsg#imgIndex=3",
+    "index": 3,
+    "context_before": "现在就是，你用自然语言描述完想要什么 App，AI Agent 写完代码之后直接帮你一键上线，你全程只管用自然语言提需求就行。",
+    "context_after": "静态资源走 IPFS 分布式存储。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2Tkr8iakoBGCgv7F6FVCbRKvrx7ob1pM370Cbsib0DDW9XW5vdBkKhRLiakqXSbWMRSlYG5icquLMjeBYwBmZqiceubGDMtXhrrMk0/640?wx_fmt=png&from=appmsg#imgIndex=4",
+    "index": 4,
+    "context_before": "静态资源走 IPFS 分布式存储。",
+    "context_after": "平台还内置了邮件推送和 LLM 调用能力，Worker 中直接调用即可。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU0yknmWYxF3LYbEzW8dvD4joEYF8rbyIFu8F8mgyiczIqWsl7A8ScuSMM75H7s9xfbk6W8OZJcIfzODfGMGjgOxzemjrAwia2euE/640?wx_fmt=png&from=appmsg#imgIndex=5",
+    "index": 5,
+    "context_before": "平台还内置了邮件推送和 LLM 调用能力，Worker 中直接调用即可。",
+    "context_after": "01",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/M2ibDBMdECU3rZ3hROt7sI2fcNC2K56iaYpObv8V4iadibg6bd7y7rbTf8BqQzZghX0yJytTG5Mfh4109kwmxDqNs6gaakg9Bic1rmOyalu7Amvc/640?wx_fmt=jpeg&from=appmsg#imgIndex=6",
+    "index": 6,
+    "context_before": "01",
+    "context_after": "PinMe 去年 4 月出了 1.0 版本，当时就是一个静态网页部署工具。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "jpeg",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU26ib1JibDMgdiaJUMbs2V2t94iabDjYGopU56WN7bqzuibJGPMDADsb1ZES5vKarN7EfV1ia4dUNh2VfLpXb4R5Ot2GWic3NdmHhIUI8/640?wx_fmt=png&from=appmsg#imgIndex=7",
+    "index": 7,
+    "context_before": "PinMe 去年 4 月出了 1.0 版本，当时就是一个静态网页部署工具。",
+    "context_after": "但现在的 PinMe 2.0 直接进化了一个级别。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU1B8RPDib0mGFTWmehtQemQh3mATNY7RZoVkIBQibcUNGAIHnibngIiaticyJm681TiaibyBibLSJP9GN8Z86pIApz6JafIuGfZErUuQlM/640?wx_fmt=png&from=appmsg#imgIndex=8",
+    "index": 8,
+    "context_before": "但现在的 PinMe 2.0 直接进化了一个级别。",
+    "context_after": "① 推出了 PinMe Skill",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mp.weixin.qq.com/s/M1cKEEFYxViEdDcKD5JimA",
+    "index": 9,
+    "context_before": "① 推出了 PinMe Skill",
+    "context_after": "你用自然语言跟 AI 描述需求 → AI 写代码构建项目 → 自动调用 PinMe 部署 → 直接把可访问链接丢给你。",
+    "width": 0,
+    "height": 0,
+    "class": "account_avatar",
+    "data_type": "",
+    "alt": ""
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ePw3ZeGRrux2sRxwJzmfe1lK8ic33XvtVPsIPCMV7hjicmScibtxIZ1NsjXxNoVNMb3zLy32Al7PSpfbVAtrACYqQ/640?wx_fmt=other&from=appmsg&wxfrom=5&wx_lazy=1&wx_co=1&tp=webp#imgIndex=11",
+    "index": 10,
+    "context_before": "你用自然语言跟 AI 描述需求 → AI 写代码构建项目 → 自动调用 PinMe 部署 → 直接把可访问链接丢给你。",
+    "context_after": "不只是静态页面，还支持全栈。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "other",
+    "alt": "图片"
+  }
+]

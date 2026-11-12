@@ -1,0 +1,173 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 38%, #ffffff 0%, #e9ecf1 78%);
+      overflow: hidden;
+    }
+    #sp-kicker {
+      position: absolute;
+      top: 400px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #6f5700;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 8px;
+    }
+    /* 原句: 10 个字各自一块, 5列x2行 */
+    #sp-chars {
+      position: absolute;
+      top: 560px;
+      left: 125px;
+      width: 830px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+    #sp-chars .cell {
+      height: 150px;
+      border-radius: 24px;
+      background: #ffffff;
+      border: 2px solid #d6dae2;
+      box-shadow: 0 8px 28px rgba(20, 21, 25, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #141519;
+      font-size: 72px;
+      font-weight: 700;
+    }
+    /* 切分后: 5 个词块 */
+    #sp-tokens {
+      position: absolute;
+      top: 1010px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+    #sp-tokens .tok {
+      padding: 22px 26px 18px;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      will-change: transform, opacity;
+    }
+    #sp-tokens .tok .w {
+      color: #141519;
+      font-size: 62px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    #sp-tokens .tok .n {
+      color: rgba(20, 21, 25, 0.6);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    #sp-tok1 { background: #7c8cff; }
+    #sp-tok2 { background: #4fd1a5; }
+    #sp-tok3 { background: #ff9f6e; }
+    #sp-tok4 { background: #6ec3ff; }
+    #sp-tok5 { background: #ffd166; }
+    #sp-cap {
+      position: absolute;
+      top: 1200px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #141519;
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    #sp-cap2 {
+      position: absolute;
+      top: 1380px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #4b5260;
+      font-size: 44px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .ch {
+      display: inline-block;
+      will-change: transform, opacity, filter;
+    }
+
+  </style>
+  <div id="root" data-composition-id="split" data-width="1080" data-height="1920">
+    <div id="sp-kicker" class="clip" data-start="0.2" data-duration="7.6" data-track-index="1">模型眼里的文字</div>
+
+    <div id="sp-chars" class="clip" data-start="0.5" data-duration="7.3" data-track-index="2">
+      <div class="cell">人</div>
+      <div class="cell">工</div>
+      <div class="cell">智</div>
+      <div class="cell">能</div>
+      <div class="cell">正</div>
+      <div class="cell">在</div>
+      <div class="cell">改</div>
+      <div class="cell">变</div>
+      <div class="cell">世</div>
+      <div class="cell">界</div>
+    </div>
+
+    <div id="sp-tokens" class="clip" data-start="2.3" data-duration="5.5" data-track-index="3">
+      <div id="sp-tok1" class="tok"><span class="w">人工</span><span class="n">1</span></div>
+      <div id="sp-tok2" class="tok"><span class="w">智能</span><span class="n">2</span></div>
+      <div id="sp-tok3" class="tok"><span class="w">正在</span><span class="n">3</span></div>
+      <div id="sp-tok4" class="tok"><span class="w">改变</span><span class="n">4</span></div>
+      <div id="sp-tok5" class="tok"><span class="w">世界</span><span class="n">5</span></div>
+    </div>
+
+    <div id="sp-cap" class="clip" data-start="4.6" data-duration="3.2" data-track-index="4">AI 不认识「字」<br />只认识 token</div>
+    <div id="sp-cap2" class="clip" data-start="6.0" data-duration="1.8" data-track-index="5">一句话 = 一串 token 序列</div>
+</div>
+  <script>
+    const cells = document.querySelectorAll("#sp-chars .cell");
+    const toks = document.querySelectorAll("#sp-tokens .tok");
+
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#sp-kicker", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.2);
+
+    // 10 个字逐个落位
+    cells.forEach((cell, i) => {
+      tl.fromTo(
+        cell,
+        { opacity: 0, scale: 0.5, y: 24 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" },
+        0.5 + i * 0.11
+      );
+    });
+
+    // 2.4s: 原句退到背景 (变暗), 词块逐个弹出
+    tl.to("#sp-chars .cell", { opacity: 0.28, duration: 0.5, ease: "power1.out", stagger: 0.03 }, 2.3);
+    toks.forEach((tok, i) => {
+      tl.fromTo(
+        tok,
+        { opacity: 0, scale: 0.4 },
+        { opacity: 1, scale: 1.08, duration: 0.35, ease: "back.out(1.6)" },
+        2.4 + i * 0.16
+      );
+      tl.to(tok, { scale: 1, duration: 0.2, ease: "power2.out" }, 2.75 + i * 0.16);
+    });
+
+    // 结论字幕
+    tl.fromTo("#sp-cap", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 4.6);
+    tl.fromTo("#sp-cap2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 6.0);
+
+    // 结尾强调: 词块整体轻脉冲一次
+    tl.to(toks, { scale: 1.05, duration: 0.28, ease: "power1.inOut", yoyo: true, repeat: 1 }, 6.9);
+
+    window.__timelines["split"] = tl;
+  </script>
+</template>

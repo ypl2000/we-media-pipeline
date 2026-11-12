@@ -1,0 +1,123 @@
+[
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU0XbswbGS1bVrrfCfr5MHAlVOu8Uar1W4DoxKueAvTWbrvhJRohwYHq9oXcxRcicc3jhZgykXQaHz0jmDrZnu1xCHk7sfT2IClg/640?wx_fmt=png&from=appmsg#imgIndex=0",
+    "index": 0,
+    "context_before": "前文回顾，可以直接看我之前发的文章。",
+    "context_after": "大概就是前段时间 Claude Code 工程师在 X 上发了一篇文章，核心观点就一句话：HTML is the new markdown。",
+    "width": 1080,
+    "height": 863,
+    "class": "rich_pages wxw-img",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU0c49evpEibx1T7xwraMxhibNqW0cNpiaXttiaAxaWGibjsOUADc3VHz9n9hYbmqyeXSytwSu7iaLP8oFbBFhrwv1gAA9zcTAVzzezO4/640?wx_fmt=png&from=appmsg#imgIndex=1",
+    "index": 1,
+    "context_before": "大概就是前段时间 Claude Code 工程师在 X 上发了一篇文章，核心观点就一句话：HTML is the new markdown。",
+    "context_after": "这篇文章在开发者圈子里炸了。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU1TsXF85mszXXY6SxniaJBqjc2d2YpcQIvUpaicF2mYPLwxF4CXsy7ZMGWnxekoaVH4A3N0x6oDvjh3Ia0fclUex2lPqEluxhBuQ/640?wx_fmt=png&from=appmsg#imgIndex=2",
+    "index": 2,
+    "context_before": "这篇文章在开发者圈子里炸了。",
+    "context_after": "Open Design 团队花了 3 天、15000 行代码，做出了一个开源项目叫 html-anything。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU0aDvv6HnC1u3BTByMpU16q5RLoI4La3duTxxBJFZuYNCpLywNqokgCpUDzft2dY196QrKvNDpickic1FywQ0PcqDFia7y1ItcUWs/640?wx_fmt=png&from=appmsg#imgIndex=3",
+    "index": 3,
+    "context_before": "Open Design 团队花了 3 天、15000 行代码，做出了一个开源项目叫 html-anything。",
+    "context_after": "X 上已经有一堆人在晒作品了。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU1XVFY0mmuicibSLS9sKWHRqkEBYPKjCr4GbE3qg3Fam5Sw5MnOF4eycLu25jgvS9ZYbWxia4wjiaFwTfuPT41vg2gicZmibXsicWPLhk/640?wx_fmt=png&from=appmsg#imgIndex=4",
+    "index": 4,
+    "context_before": "X 上已经有一堆人在晒作品了。",
+    "context_after": "Thariq 之前不是说不需要搞什么复杂的配置或 Skill 么？",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU0gKWm0RPyMVvSpTyOTtRs7AvdqmicBAHw6RlXG4tYAdlK1f8byh22EXaYkXZDDloDVIyZbpHp2YMYK78vSaPCocd5DZRxwFno4/640?wx_fmt=png&from=appmsg#imgIndex=5",
+    "index": 5,
+    "context_before": "Thariq 之前不是说不需要搞什么复杂的配置或 Skill 么？",
+    "context_after": "html-anything 是什么",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU0EFSwE8eN2PwMhlyaia89UUEHSxApHxfEibxVic7n7H5WQowGbcbQlHmRNv6L1lFBTcXWShPPBOUhhhXaJy2erjqR7hV0iawz3guo/640?wx_fmt=png&from=appmsg#imgIndex=6",
+    "index": 6,
+    "context_before": "html-anything 是什么",
+    "context_after": "它能接入你电脑上已经登录的 Coding Agent CLI，自动检测你装了哪些工具，然后复用你现有的会话。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2Gh06kUiaZr1BcdBkicHbgNczSCaEnYibPY3u3VgPKKWEG65ib8esSbicl6fmOmC4CDBh01fSL24prSQM5qcE5XNsYDJp53bicJqlQE/640?wx_fmt=png&from=appmsg#imgIndex=7",
+    "index": 7,
+    "context_before": "它能接入你电脑上已经登录的 Coding Agent CLI，自动检测你装了哪些工具，然后复用你现有的会话。",
+    "context_after": "支持 8 种 Agent：Claude Code、Cursor、Codex、Gemini CLI、OpenCode等。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU3ss0UHq3RZ5bHpWsfMVuWyQicWqVnFz0yibkcEZG4nUq6gDn2IemIwR7ICg6U7Z6C7CQjEk7AybSr3g64xs2ZyUiarWdTicaPGibe4/640?wx_fmt=png&from=appmsg#imgIndex=8",
+    "index": 8,
+    "context_before": "支持 8 种 Agent：Claude Code、Cursor、Codex、Gemini CLI、OpenCode等。",
+    "context_after": "开源地址：https://github.com/nexu-io/html-anything",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU3h8DJ7wDwWZFTiaOlfGNA6LEQxK8oIRQEdkTjWibwuYVNiatkh9PVJNxXRrPfeZxQ6hSZnKwFdjOPIxUMvCfTiaXIwRLjomTKReQY/640?wx_fmt=png&from=appmsg#imgIndex=9",
+    "index": 9,
+    "context_before": "开源地址：https://github.com/nexu-io/html-anything",
+    "context_after": "三个让人眼前一亮的点",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ePw3ZeGRrux2sRxwJzmfe1lK8ic33XvtVPsIPCMV7hjicmScibtxIZ1NsjXxNoVNMb3zLy32Al7PSpfbVAtrACYqQ/640?wx_fmt=other&from=appmsg&wxfrom=5&wx_lazy=1&wx_co=1&tp=webp#imgIndex=11",
+    "index": 10,
+    "context_before": "三个让人眼前一亮的点",
+    "context_after": "这是 html-anything 最核心的武器。内置了 75 套 Skill 模板，覆盖了 9 种输出格式：",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "other",
+    "alt": "图片"
+  }
+]

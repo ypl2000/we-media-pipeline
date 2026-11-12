@@ -1,0 +1,121 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 38%, #ffffff 0%, #e9ecf1 78%);
+      overflow: hidden;
+    }
+    #ot-sum {
+      position: absolute;
+      top: 700px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #141519;
+      font-size: 78px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+    #ot-sum .hl {
+      color: #6f5700;
+    }
+    #ot-sub {
+      position: absolute;
+      top: 960px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #4b5260;
+      font-size: 46px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    /* 结尾 CTA: 深底 + 金边, 固定 top 1366 居中 (紧贴字幕带上沿) */
+    #ot-cta {
+      position: absolute;
+      top: 1366px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      will-change: transform, opacity;
+    }
+    #ot-cta span {
+      display: inline-block;
+      background: #1e212b;
+      border: 3px solid #ffd700;
+      border-radius: 999px;
+      padding: 16px 52px;
+      color: #f2f3f5;
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: 6px;
+      box-shadow: 0 0 26px rgba(255, 215, 0, 0.28);
+    }
+    .ch {
+      display: inline-block;
+      will-change: transform, opacity, filter;
+    }
+
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="ot-sum" class="clip" data-start="0.4" data-duration="6.4" data-track-index="1">Token =<br /><span class="hl">AI 眼里的最小积木</span></div>
+    <div id="ot-sub" class="clip" data-start="2.0" data-duration="4.8" data-track-index="2">看懂它，就看懂了大模型的<br />账单和上下文窗口</div>
+    <!-- 结尾 CTA: 不放品牌名胶囊(顶部已有常驻品牌水印), 也不要放 logo -->
+    <div id="ot-cta" class="clip" data-start="5.2" data-duration="2.6" data-track-index="3">
+      <span>点赞 · 关注</span>
+    </div>
+</div>
+  <script>
+    function splitChars(el) {
+      const text = el.textContent;
+      const chars = [];
+      el.textContent = "";
+      for (const ch of text) {
+        const span = document.createElement("span");
+        span.className = "ch";
+        span.textContent = ch;
+        el.appendChild(span);
+        chars.push(span);
+      }
+      return chars;
+    }
+
+    // 只拆第一行文字, 保留 <br> 和 .hl 结构: 分别拆两个文本节点所在的父级
+    const sumEl = document.getElementById("ot-sum");
+    const hlEl = sumEl.querySelector(".hl");
+    // 先拆 hl 前面的文本节点 "Token ="
+    const parts = [];
+    [...sumEl.childNodes].forEach((node) => {
+      if (node.nodeType === 3 && node.textContent.trim()) {
+        const span = document.createElement("span");
+        span.textContent = node.textContent;
+        sumEl.replaceChild(span, node);
+        parts.push(splitChars(span));
+      }
+    });
+    parts.push(splitChars(hlEl));
+    const subEl = document.getElementById("ot-sub");
+    // 副标题带 <br>, 整行淡入即可, 不拆字
+
+    const tl = gsap.timeline({ paused: true });
+
+    const allChars = parts.flat();
+    gsap.set(allChars, { opacity: 0, y: 12, filter: "blur(6px)" });
+    tl.to(allChars, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "power3.out", stagger: 0.04 }, 0.4);
+
+    tl.fromTo("#ot-sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, 2.0);
+
+    // CTA: back.out 弹入 + 末尾轻脉冲
+    tl.fromTo(
+      "#ot-cta span",
+      { opacity: 0, scale: 0.55 },
+      { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2.2)" },
+      5.2
+    );
+    tl.to("#ot-cta span", { scale: 1.07, duration: 0.28, ease: "power2.inOut", yoyo: true, repeat: 1 }, 6.9);
+
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

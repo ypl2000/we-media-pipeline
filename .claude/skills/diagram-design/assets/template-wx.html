@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[标题]</title>
+  <!--
+    公众号配图模板 · 1080 宽
+    字号下限 40px（= 12.6 CSS px 手机端）。见 references/wechat-spec.md
+    导出：python scripts/export_png.py <in> <out> 1
+  -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:  #f5f5f5;
+      --color-ink:    #2d3142;
+      --color-muted:  #4f5d75;
+      --color-accent: #bf4520;
+      --font-sans:    'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+    }
+    body { font-family: var(--font-sans); background: var(--color-paper); color: var(--color-ink); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .frame { max-width: 1080px; width: 100%; }
+    svg { width: 100%; min-width: 1080px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <svg viewBox="0 0 1080 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+      <title id="t">[标题]</title>
+      <desc id="d">[一句话说明这张图在讲什么]</desc>
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">
+          <polygon points="0 0, 12 5, 0 10" fill="#bf4520"/>
+        </marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- 标题 60px；副标题 44px（可删） -->
+      <text x="60" y="104" fill="#2d3142" font-size="60" font-weight="700" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif">[标题，一句话]</text>
+      <text x="60" y="168" fill="#bf4520" font-size="44" font-weight="600" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif">[副标题，结论]</text>
+
+      <!-- 节点：标签 40px，数字 48-56px -->
+      <rect x="60" y="240" width="240" height="160" rx="10" fill="#ececec" stroke="#4f5d75" stroke-width="2"/>
+      <text x="180" y="304" fill="#4f5d75" font-size="40" font-weight="600" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[标签]</text>
+      <text x="180" y="372" fill="#2d3142" font-size="52" font-weight="700" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[数字]</text>
+
+      <!-- 连接：箭头 + 40px 标注 -->
+      <line x1="320" y1="320" x2="424" y2="320" stroke="#bf4520" stroke-width="4" marker-end="url(#arrow)"/>
+      <text x="372" y="288" fill="#bf4520" font-size="40" font-weight="600" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[比例]</text>
+      <text x="372" y="376" fill="#4f5d75" font-size="40" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[说明]</text>
+
+      <rect x="440" y="240" width="240" height="160" rx="10" fill="#ececec" stroke="#4f5d75" stroke-width="2"/>
+      <text x="560" y="304" fill="#4f5d75" font-size="40" font-weight="600" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[标签]</text>
+      <text x="560" y="372" fill="#2d3142" font-size="52" font-weight="700" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[数字]</text>
+
+      <!-- 强调节点：只在最想让人看的那一个上用 -->
+      <rect x="820" y="240" width="200" height="160" rx="10" fill="rgba(191,69,32,0.12)" stroke="#bf4520" stroke-width="2"/>
+      <text x="920" y="304" fill="#bf4520" font-size="40" font-weight="600" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[标签]</text>
+      <text x="920" y="372" fill="#bf4520" font-size="52" font-weight="700" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" text-anchor="middle">[数字]</text>
+
+      <!-- 页脚：40px -->
+      <text x="60" y="480" fill="#4f5d75" font-size="40" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif">[脚注一句话]</text>
+    </svg>
+  </div>
+</body>
+</html>

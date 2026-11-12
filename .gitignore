@@ -1,0 +1,11 @@
+﻿# 本机配置（含密钥与个人路径），不要提交
+config.json
+.claude/settings.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 运行目录
+_work/

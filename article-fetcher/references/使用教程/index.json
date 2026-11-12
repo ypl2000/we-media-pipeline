@@ -1,0 +1,47 @@
+{
+  "topic": "产品使用教程",
+  "updated_at": "2026-05-21",
+  "articles": [
+    {
+      "title": "产品运营必看：30分钟用SOLO写完产品手册",
+      "url": "https://mp.weixin.qq.com/s/n2O1EGHKu6Zxm5r9-qdD9A",
+      "saved_at": "2026-05-21"
+    },
+    {
+      "title": "TRAE Editor for Unity：让 AI 融入 Unity 开发工作流",
+      "url": "https://mp.weixin.qq.com/s/lyGuyf4wgmeo3d5wnGmX2Q",
+      "saved_at": "2026-05-21"
+    },
+    {
+      "title": "TRAE × IGA Pages：TRAE 中国版如何快速实现一键部署",
+      "url": "https://mp.weixin.qq.com/s/jLX59dtEvo0DUu8t6ceV_Q",
+      "saved_at": "2026-05-21"
+    },
+    {
+      "title": "万字干货｜AI 时代的 Git 版本管理，你用对了吗？",
+      "url": "https://mp.weixin.qq.com/s/70hz6sYNwxErRkP7dkY8-Q",
+      "saved_at": "2026-05-21"
+    },
+    {
+      "title": "从创意到落地，SOLO 如何让短剧制作更高效",
+      "url": "https://mp.weixin.qq.com/s/HyYv5gUiT-HoV4sw9N9OOg",
+      "saved_at": "2026-05-21"
+    },
+    {
+      "title": "如何让_AI_更听话Rules_高效使用指南",
+      "url": "https://mp.weixin.qq.com/s/60SzfUpnSe5MIKlPwV8FmA",
+      "saved_at": "2026-05-21"
+    },
+    {
+      "title": "开启极简养虾用_TRAE_快速部署_OpenClaw",
+      "url": "https://mp.weixin.qq.com/s/_qWjfD-CNlT0rlkuaaYYlA",
+      "saved_at": "2026-05-21"
+    },
+    {
+      "title": "TRAE_CN_实战从_API_文档到可复用服务的自动化探索",
+      "url": "https://mp.weixin.qq.com/s/93aFh71-I45YVcgr3v0oFw",
+      "saved_at": "2026-05-21"
+    }
+  ],
+  "note": "空主题，等待后续学习文章后填充"
+}

@@ -1,0 +1,263 @@
+<!doctype html>
+<html
+  lang="zh-CN"
+  data-composition-variables='[
+    {"id":"main_title","type":"string","label":"主标题","default":"主标题"},
+    {"id":"sub_title","type":"string","label":"副标题","default":"副标题"},
+    {"id":"text_1","type":"string","label":"正文1","default":"第一段正文"},
+    {"id":"text_2","type":"string","label":"正文2","default":"第二段正文"},
+    {"id":"text_3","type":"string","label":"正文3","default":"第三段正文"},
+    {"id":"img_1","type":"string","label":"图片1","default":"assets/backgrounds/ai_not_cool_bg.jpg"},
+    {"id":"img_2","type":"string","label":"图片2","default":"assets/backgrounds/ai_not_cool_bg.jpg"},
+    {"id":"img_3","type":"string","label":"图片3","default":"assets/backgrounds/ai_not_cool_bg.jpg"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "YaHei";
+        src: local("Microsoft YaHei"), local("Microsoft YaHei UI");
+        font-weight: 400 900;
+      }
+      /* 真正的雅黑 Bold，只给底部字幕用；常规 face 不提供粗体字形。 */
+      @font-face {
+        font-family: "YaHeiBold";
+        src: local("Microsoft YaHei Bold"), local("Microsoft YaHei UI Bold");
+        font-weight: 700 900;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #1a1a1a;
+        font-family: "YaHei", sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+
+      /* logo: 210px 宽白底横幅, y=120 */
+      #logo {
+        position: absolute;
+        top: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 210px;
+        border-radius: 10px;
+        z-index: 5;
+      }
+
+      /* header: title y=218, subtitle just below */
+      #header {
+        position: absolute;
+        top: 218px;
+        left: 0;
+        width: 1080px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        z-index: 5;
+      }
+      #title {
+        display: inline-block;
+        max-width: 1000px;
+        padding: 18px 25px;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1.22;
+        text-align: center;
+        -webkit-text-stroke: 4px #000;
+        paint-order: stroke fill;
+      }
+      #subtitle {
+        display: inline-block;
+        max-width: 1000px;
+        padding: 14px 20px;
+        border-radius: 20px;
+        background: #ffd700;
+        color: #000;
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 1.2;
+        text-align: center;
+      }
+      .ch {
+        display: inline-block;
+        will-change: transform, opacity, filter;
+      }
+
+      /* image band: y=480, h=730, full width */
+      .shot {
+        position: absolute;
+        top: 480px;
+        left: 0;
+        width: 1080px;
+        height: 730px;
+        overflow: hidden;
+        z-index: 2;
+      }
+      .shot .frame {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 730px;
+      }
+      .shot img {
+        width: 1080px;
+        height: 730px;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* bottom text: y=1238 */
+      .caption {
+        position: absolute;
+        top: 1238px;
+        left: 0;
+        width: 1080px;
+        display: flex;
+        justify-content: center;
+        z-index: 4;
+      }
+      .caption .box {
+        display: inline-block;
+        max-width: 1000px;
+        padding: 18px 25px;
+        color: #fff;
+        font-family: "YaHeiBold", "YaHei", sans-serif;
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 1.8;
+        text-align: center;
+      }
+      /* B 方案：底色挂在每个字上，字出现底色才出现，逐行形成高亮条。 */
+      .caption .box .ch {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="9"
+      data-width="1080"
+      data-height="1920"
+      data-fps="30"
+    >
+      <img id="bg" src="assets/backgrounds/ai_not_cool_bg.jpg" alt="" />
+      <img id="logo" src="assets/logos/ai_not_cool_logo.png" alt="" />
+
+      <div id="header">
+        <div id="title" data-var-text="main_title">主标题</div>
+        <div id="subtitle" data-var-text="sub_title">副标题</div>
+      </div>
+
+      <div id="shot1" class="shot clip" data-start="0" data-duration="3.1" data-track-index="1">
+        <div class="frame"><img data-var-src="img_1" src="assets/backgrounds/ai_not_cool_bg.jpg" alt="" /></div>
+      </div>
+      <div id="shot2" class="shot clip" data-start="3.1" data-duration="3.1" data-track-index="1">
+        <div class="frame"><img data-var-src="img_2" src="assets/backgrounds/ai_not_cool_bg.jpg" alt="" /></div>
+      </div>
+      <div id="shot3" class="shot clip" data-start="6.2" data-duration="2.8" data-track-index="1">
+        <div class="frame"><img data-var-src="img_3" src="assets/backgrounds/ai_not_cool_bg.jpg" alt="" /></div>
+      </div>
+
+      <div id="cap1" class="caption clip" data-start="0" data-duration="3.1" data-track-index="2">
+        <div class="box" data-var-text="text_1">第一段正文</div>
+      </div>
+      <div id="cap2" class="caption clip" data-start="3.1" data-duration="3.1" data-track-index="2">
+        <div class="box" data-var-text="text_2">第二段正文</div>
+      </div>
+      <div id="cap3" class="caption clip" data-start="6.2" data-duration="2.8" data-track-index="2">
+        <div class="box" data-var-text="text_3">第三段正文</div>
+      </div>
+
+      <audio
+        id="bgm"
+        data-start="0"
+        data-duration="9"
+        data-track-index="9"
+        src="assets/music/ai_not_cool_bgm.mp3"
+        data-volume="0.3"
+      ></audio>
+    </div>
+
+    <script>
+      // 标题/副标题逐字入场。文字由 data-var-text 在脚本前绑定好，这里只拆一次。
+      function splitChars(el) {
+        const text = el.textContent;
+        const chars = [];
+        el.textContent = "";
+        for (const ch of text) {
+          const span = document.createElement("span");
+          span.className = "ch";
+          span.textContent = ch === " " ? " " : ch;
+          el.appendChild(span);
+          chars.push(span);
+        }
+        return chars;
+      }
+
+      const titleChars = splitChars(document.getElementById("title"));
+      const subtitleChars = splitChars(document.getElementById("subtitle"));
+      const captionChars = [...document.querySelectorAll(".caption .box")].map(splitChars);
+
+      // 一比一还原旧版：图片切换时的放大淡出。
+      const tl = gsap.timeline({ paused: true });
+
+      gsap.set(titleChars, { opacity: 0.5, y: 6, filter: "blur(5px)" });
+      gsap.set(subtitleChars, { opacity: 0, y: 8, filter: "blur(8px)" });
+      // 副标题底板跟着字一起出现，避免第 0 帧出现空黄框。
+      gsap.set("#subtitle", { opacity: 0 });
+      tl.to("#subtitle", { opacity: 1, duration: 0.12, ease: "power1.out" }, 0.34);
+      // 标题第 0 帧是虚焦灰字，再逐字对焦，封面不会是空白。
+      tl.to(titleChars, {
+        opacity: 1, y: 0, filter: "blur(0px)",
+        duration: 0.4, ease: "power3.out", stagger: 0.04,
+      }, 0);
+      tl.to(subtitleChars, {
+        opacity: 1, y: 0, filter: "blur(0px)",
+        duration: 0.4, ease: "power3.out", stagger: 0.04,
+      }, 0.36);
+
+      // 字幕打字机：每字 0.035s，底色挂在字上，字出现底色才出现。
+      const CAPTION_STARTS = [0, 3.1, 6.2];
+      captionChars.forEach((chars, i) => {
+        if (!chars.length) return;
+        gsap.set(chars, { opacity: 0 });
+        tl.to(chars, {
+          opacity: 1, duration: 0.03, ease: "none", stagger: 0.035,
+        }, CAPTION_STARTS[i]);
+      });
+
+      tl.to("#shot1 .frame", { scale: 10, opacity: 0, duration: 0.2, ease: "power2.in" }, 2.9);
+      tl.to("#shot2 .frame", { scale: 10, opacity: 0, duration: 0.2, ease: "power2.in" }, 6.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+[
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU1nsBnlotkLBDuiaV8MZ2Gf8zzkicndExQp1MeFOATcVAv4Riaz14xiaYUxemhw2R2mrXYHa5m9O5FF3DqJfVWVVk00QneQicGMgFDI/640?wx_fmt=png&from=appmsg#imgIndex=0",
+    "index": 0,
+    "context_before": "DeepSeek V4 还是挺顶的。",
+    "context_after": "100 万 token 上下文、思维链推理、价格打到骨折，模型本身的实力没得说。",
+    "width": 1080,
+    "height": 526,
+    "class": "rich_pages wxw-img",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2ldvsgZCdalkMLjOQuv4tVFrYNQ8KpvXmCJ7sqp9xSSbxsZW7lvSzvriaGgQretiawHKlMUBKHJZib4AQWV7kZhGpuoofYO9lvG8/640?wx_fmt=png&from=appmsg#imgIndex=1",
+    "index": 1,
+    "context_before": "100 万 token 上下文、思维链推理、价格打到骨折，模型本身的实力没得说。",
+    "context_after": "你不能让它直接改文件、跑命令、Git 管理，只能复制粘贴来回复制粘贴，效率很低。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU1VSicMzawemicxWu9420uEK8lDicupgF5ENBZHaQrIRrDIjQF8Jttu3Wgol8v90OsGmh4jJPtjh487z6mU1tpdYiajDOwLd65df28/640?wx_fmt=png&from=appmsg#imgIndex=2",
+    "index": 2,
+    "context_before": "你不能让它直接改文件、跑命令、Git 管理，只能复制粘贴来回复制粘贴，效率很低。",
+    "context_after": "所以有人用 Rust 从零写了一个终端原生的编程 Agent，专门对接 DeepSeek V4。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU0XGcMEXKrNOamG8Hwc1DbyfPaOjiarGLiclw03Ba7AS4RaibFajDRST3jDBTPwwO4ZhRugsnT58LHd1X1icMWic4VTkztTB7fXtn0Q/640?wx_fmt=png&from=appmsg#imgIndex=3",
+    "index": 3,
+    "context_before": "所以有人用 Rust 从零写了一个终端原生的编程 Agent，专门对接 DeepSeek V4。",
+    "context_after": "01",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU3DdeEhOaBsicIJvGI1lypXCg6RvxdPT1ZHK6cyrNAyesNeTMfRib4MXsNeY39I3eMib6Z87BGwB2cNCQPXfQIxicr5TlmtcfdibfI8/640?wx_fmt=png&from=appmsg#imgIndex=4",
+    "index": 4,
+    "context_before": "01",
+    "context_after": "DeepSeek-TUI 是一个跑在终端里的 AI 编程 Agent，用 Rust 写的，专门对接 DeepSeek V4 模型。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU04fxWy73lQT9j1u9bgibX7LZibr01hjuKqTUrta9pFMbBwUCjz0QmW76FWBrHNH1ibBQntTNvXQ6ymbebgUwXWibHpN8YgPsscgSI/640?wx_fmt=png&from=appmsg#imgIndex=5",
+    "index": 5,
+    "context_before": "DeepSeek-TUI 是一个跑在终端里的 AI 编程 Agent，用 Rust 写的，专门对接 DeepSeek V4 模型。",
+    "context_after": "它能直接在你的终端里读写文件、执行 Shell 命令、搜索网页、管理 Git、甚至编排子 Agent 并行干活。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2fAaDMlnZuTt8iaYKCln9nlaTpoGmFialziaGaXlG02NYA9w4aoYB2cAuCf6LIyicu26ticss9PezOywVG2DhAQzPpVu5Olgdg4rZg/640?wx_fmt=png&from=appmsg#imgIndex=6",
+    "index": 6,
+    "context_before": "它能直接在你的终端里读写文件、执行 Shell 命令、搜索网页、管理 Git、甚至编排子 Agent 并行干活。",
+    "context_after": "100 万 token 上下文 + 思维链实时可见",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU23w3JQQPhmZuhibRnZeZBjKiarSuIT3MiadichibY0WibAxb3cib9WG322ibahhpncQwqjAZ6C0tMx9ImnMs0ovTicnDicmM4FgFB0421KU/640?wx_fmt=png&from=appmsg#imgIndex=7",
+    "index": 7,
+    "context_before": "100 万 token 上下文 + 思维链实时可见",
+    "context_after": "更关键的是它支持 Thinking-mode 流式输出，模型的推理过程你是能实时看到的。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2W969jOmCHJfcxmJe6X3pULPohNgkm4iaFljibho8zaXgue0do7kdMdNiaMpjmDuWF2P4XEFgvdYLORv0nvzfveyJDiaib5uzxpAicc/640?wx_fmt=png&from=appmsg#imgIndex=8",
+    "index": 8,
+    "context_before": "更关键的是它支持 Thinking-mode 流式输出，模型的推理过程你是能实时看到的。",
+    "context_after": "100 万 token 大概相当于 75 万字，换算成代码差不多能把一个中型项目的全部源码一次性塞进去。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ePw3ZeGRrux2sRxwJzmfe1lK8ic33XvtVPsIPCMV7hjicmScibtxIZ1NsjXxNoVNMb3zLy32Al7PSpfbVAtrACYqQ/640?wx_fmt=other&from=appmsg&wxfrom=5&wx_lazy=1&wx_co=1&tp=webp#imgIndex=11",
+    "index": 9,
+    "context_before": "100 万 token 大概相当于 75 万字，换算成代码差不多能把一个中型项目的全部源码一次性塞进去。",
+    "context_after": "改一个函数的时候它知道这个改动会波及到哪些地方，而不是只盯着你贴进来的那几行代码瞎猜。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "other",
+    "alt": "图片"
+  }
+]

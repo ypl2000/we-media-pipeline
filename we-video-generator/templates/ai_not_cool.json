@@ -1,0 +1,106 @@
+{
+  "name": "AI不够酷新闻视频模板V3",
+  "description": "模板与内容分离，支持更多文字样式配置",
+  "version": "3.0",
+  "resolution": "1080x1920",
+  "fps": 30,
+  "total_duration": 12,
+  
+  "fixed_elements": {
+    "background_image": "assets/backgrounds/ai_not_cool_bg.jpg",
+    "background_color": "#1A1A1A",
+    "brand_name": "AI不够酷",
+    "brand_logo": "assets/logos/ai_not_cool_logo.png",
+    "brand_position": "top_left",
+    "brand_font_size": 48,
+    "brand_color": "#FFFFFF",
+    "brand_bold": true
+  },
+  
+  "title_section": {
+    "enabled": true,
+    "position": "top_center",
+    "y_position": 150,
+    "main_title": {
+      "font_size": 72,
+      "color": "#FFFFFF",
+      "max_chars_per_line": 14,
+      "margin_left": 80,
+      "margin_right": 80,
+      "auto_wrap": true,
+      "bold": true,
+      "stroke_width": 3,
+      "stroke_color": "#000000",
+      "content_key": "main_title"
+    },
+    "sub_title": {
+      "font_size": 48,
+      "color": "#CCCCCC",
+      "max_chars_per_line": 20,
+      "auto_wrap": true,
+      "bold": false,
+      "margin_top": 20,
+      "content_key": "sub_title"
+    }
+  },
+  
+  "image_carousel": {
+    "enabled": true,
+    "image_count": 3,
+    "each_duration": 3,
+    "image_style": {
+      "width_percent": 100,
+      "height_percent": 40,
+      "y_position": 600,
+      "object_fit": "cover",
+      "border_radius": 0
+    },
+    "transition": {
+      "type": "zoom_in",
+      "duration": 0.5
+    },
+    "content_key": "images"
+  },
+  
+  "text_sections": {
+    "enabled": true,
+    "section_count": 3,
+    "each_duration": 3,
+    "position": "bottom_center",
+    "y_position": 1400,
+    "style": {
+      "font_size": 56,
+      "color": "#FFFFFF",
+      "max_chars_per_line": 18,
+      "auto_wrap": true,
+      "bold": true,
+      "stroke_width": 2,
+      "stroke_color": "#000000",
+      "background": {
+        "enabled": true,
+        "color": "#000000",
+        "opacity": 0.5,
+        "padding": 20,
+        "border_radius": 10
+      }
+    },
+    "content_key": "text_sections"
+  },
+  
+  "outro": {
+    "enabled": true,
+    "duration": 3,
+    "position": "bottom_center",
+    "font_size": 40,
+    "color": "#CCCCCC",
+    "bold": false,
+    "content_key": "outro_text"
+  },
+  
+  "audio": {
+    "bgm": "assets/music/ai_not_cool_bgm.mp3",
+    "volume": 0.3,
+    "fade_in": 0.5,
+    "fade_out": 1
+  }
+}

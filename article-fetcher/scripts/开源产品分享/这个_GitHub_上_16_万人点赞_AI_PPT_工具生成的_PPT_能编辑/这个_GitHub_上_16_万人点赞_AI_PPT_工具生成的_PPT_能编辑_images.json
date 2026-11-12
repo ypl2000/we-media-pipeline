@@ -1,0 +1,123 @@
+[
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU3nCXbLmma4WcJv1OBicrHUk737ibToUQUwEw80PbMh58YiccLqSrsvJ9yBDIibzLIBRSkicvLFSW1E3h0IMWcXfmYtAdfUbpl3ZLicg/640?wx_fmt=png&from=appmsg#imgIndex=0",
+    "index": 0,
+    "context_before": "这个叫 PPT Master 的开源项目，是一个让你拿到手真正能改的 AI PPT 方案。",
+    "context_after": "AI 生成 PPT 这件事，折腾了快两年了，说来说去大概有四条路线。",
+    "width": 1080,
+    "height": 599,
+    "class": "rich_pages wxw-img",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mp.weixin.qq.com/s/LPAvHIUYBStP5inUEX94Vw",
+    "index": 1,
+    "context_before": "AI 生成 PPT 这件事，折腾了快两年了，说来说去大概有四条路线。",
+    "context_after": "换换文字、换换图标，效率确实高，但做出来的东西千篇一律。",
+    "width": 0,
+    "height": 0,
+    "class": "account_avatar",
+    "data_type": "",
+    "alt": ""
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU3u4u5frFsLpr9F2F0z5gaUkIptBQaMVQ92eWBju4p2oR1b3sgYqbkictdfDWoNGd98rxrZhYBH7stMeJQJdI5lPBVzVF5AhOb8/640?wx_fmt=png&from=appmsg#imgIndex=1",
+    "index": 2,
+    "context_before": "换换文字、换换图标，效率确实高，但做出来的东西千篇一律。",
+    "context_after": "第二条：HTML 渲染然后转 PPTX。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU1MruLmoPHibatkhV1wv1EnBxGHrqRRIHCSjIiaGdicvY585sJMjvAiaq7JibXcpKWphpInMHSCTlqZkacRn6r7vmgoviaj6yZ9Vp3Iw/640?wx_fmt=png&from=appmsg#imgIndex=2",
+    "index": 3,
+    "context_before": "第二条：HTML 渲染然后转 PPTX。",
+    "context_after": "Gamma、Tome 走的就是这条路，好看是好看，但导出来就变形。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2DvrcY9PjicZaM8YV5972hIUmcHv3vUW3T0YMHJoLmL1VWYGrqxxZWSTR3JW0zhibgJBIfMVs5ZdhkCFZYoOryqRVSf0MUUBAJw/640?wx_fmt=png&from=appmsg#imgIndex=3",
+    "index": 4,
+    "context_before": "Gamma、Tome 走的就是这条路，好看是好看，但导出来就变形。",
+    "context_after": "这种方式元素确实可以编辑，但 AI 缺乏复杂设计的训练数据，做出来的就是文本框加列表，跟审美基本不沾边。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU1LcTtgicE3N0b1NgR1rXaZupy4bdyQOOs6ME64C9YxE64RJDPia9dyMriaNBA9tXNibt9P2OtJvnaLuFN1F7AxxqwkjcTf8xqgOjo/640?wx_fmt=png&from=appmsg#imgIndex=4",
+    "index": 5,
+    "context_before": "这种方式元素确实可以编辑，但 AI 缺乏复杂设计的训练数据，做出来的就是文本框加列表，跟审美基本不沾边。",
+    "context_after": "第四条路就是今天要聊的：AI 生成 SVG，然后脚本把 SVG 转成 PowerPoint 原生对象。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU1KqC9S5MFEYk89ujUqrk8lXl6iagm350iclhHeRTXUwJHaA3ICJ6xTVWcPW54dqs5aN9fzA7YvoYexVAkTeUl466rPibjbBXLIjY/640?wx_fmt=png&from=appmsg#imgIndex=5",
+    "index": 6,
+    "context_before": "第四条路就是今天要聊的：AI 生成 SVG，然后脚本把 SVG 转成 PowerPoint 原生对象。",
+    "context_after": "，时长",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M2ibDBMdECU28smPKbsh75W2CohXhF8naQiaJlRbfXqlhSrbeiadte1eF6tuEyENMymluopKtb32nzFp9QaWcibpwgmLRM3rL1q6WVZibZpN87gg/640?wx_fmt=png&from=appmsg#imgIndex=6",
+    "index": 7,
+    "context_before": "，时长",
+    "context_after": "01",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU3nxHOlWr9uoUHciaguRzccQRFrhWCt5ibvoubbp7ibuowC5LmwRkLiaW5bLiaXa9aFmgUQpT7Z9EN76Ap3eep4iaqLS3Er72FuVLqv8/640?wx_fmt=png&from=appmsg#imgIndex=7",
+    "index": 8,
+    "context_before": "01",
+    "context_after": "PPT Master 是一套在 AI 编辑器里运行的开源工作流，你不需要写任何代码。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_insertlocalimg js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M2ibDBMdECU2DUopqWwyeAbbjpc8pTFHXQCk5rB1Djyrks6Yib9Nl6ksicickkR73gf9XMlCSib80O2AoJiaYnzQMD2BvmrTMUm3sALB9Owf5vI0w/640?wx_fmt=png&from=appmsg#imgIndex=8",
+    "index": 9,
+    "context_before": "PPT Master 是一套在 AI 编辑器里运行的开源工作流，你不需要写任何代码。",
+    "context_after": "拿到手的文件里，每个形状、文本框、渐变、阴影都是原生的 PowerPoint 对象。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ePw3ZeGRrux2sRxwJzmfe1lK8ic33XvtVPsIPCMV7hjicmScibtxIZ1NsjXxNoVNMb3zLy32Al7PSpfbVAtrACYqQ/640?wx_fmt=other&from=appmsg&wxfrom=5&wx_lazy=1&wx_co=1&tp=webp#imgIndex=11",
+    "index": 10,
+    "context_before": "拿到手的文件里，每个形状、文本框、渐变、阴影都是原生的 PowerPoint 对象。",
+    "context_after": "GitHub 地址：https://github.com/hugohe3/ppt-master",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "other",
+    "alt": "图片"
+  }
+]

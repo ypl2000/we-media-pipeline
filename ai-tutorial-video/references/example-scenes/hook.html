@@ -1,0 +1,131 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 38%, #ffffff 0%, #e9ecf1 78%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #hk-kicker {
+      position: absolute;
+      top: 520px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+    }
+    #hk-kicker span {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 999px;
+      background: rgba(255, 215, 0, 0.16);
+      border: 3px solid #d8a800;
+      color: #6f5700;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: 6px;
+    }
+    #hk-lineA {
+      position: absolute;
+      top: 760px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #141519;
+      font-size: 84px;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+    #hk-lineB {
+      position: absolute;
+      top: 950px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #4b5260;
+      font-size: 56px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    #hk-token {
+      position: absolute;
+      top: 1150px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #6f5700;
+      font-family: "YaHeiBold", "YaHei", sans-serif;
+      font-size: 190px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      line-height: 1;
+      text-shadow: 0 0 60px rgba(111, 87, 0, 0.18);
+    }
+    #hk-token .zh {
+      display: block;
+      margin-top: 28px;
+      color: #141519;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 12px;
+      text-shadow: none;
+    }
+    .ch {
+      display: inline-block;
+      will-change: transform, opacity, filter;
+    }
+
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-kicker" class="clip" data-start="0.2" data-duration="4.6" data-track-index="1">
+      <span>AI 科普 · 第 1 期</span>
+    </div>
+    <div id="hk-lineA" class="clip" data-start="0.5" data-duration="4.3" data-track-index="2">你以为 AI 在读「字」</div>
+    <div id="hk-lineB" class="clip" data-start="4.0" data-duration="3.4" data-track-index="3">其实它看到的是——</div>
+    <div id="hk-token" class="clip" data-start="5.0" data-duration="3.0" data-track-index="4">TOKEN<span class="zh">/ 词块</span></div>
+</div>
+  <script>
+    function splitChars(el) {
+      const text = el.textContent;
+      const chars = [];
+      el.textContent = "";
+      for (const ch of text) {
+        const span = document.createElement("span");
+        span.className = "ch";
+        span.textContent = ch;
+        el.appendChild(span);
+        chars.push(span);
+      }
+      return chars;
+    }
+
+    const lineAChars = splitChars(document.getElementById("hk-lineA"));
+    const lineBChars = splitChars(document.getElementById("hk-lineB"));
+
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#hk-kicker span", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.2);
+
+    gsap.set(lineAChars, { opacity: 0, y: 10, filter: "blur(8px)" });
+    tl.to(lineAChars, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out", stagger: 0.05 }, 0.5);
+
+    gsap.set(lineBChars, { opacity: 0, y: 10, filter: "blur(8px)" });
+    tl.to(lineBChars, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "power3.out", stagger: 0.04 }, 4.0);
+
+    tl.fromTo(
+      "#hk-token",
+      { opacity: 0, scale: 0.4 },
+      { opacity: 1, scale: 1.06, duration: 0.45, ease: "power2.out" },
+      5.0
+    );
+    tl.to("#hk-token", { scale: 1, duration: 0.3, ease: "power2.out" }, 5.45);
+    tl.fromTo("#hk-token .zh", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 5.9);
+    // 收尾再给一拍（不然 hook 尾巴有 3s 死场, check 报 dead_stretch）
+    tl.to("#hk-token", { scale: 1.05, duration: 0.3, ease: "power2.inOut", yoyo: true, repeat: 1 }, 6.9);
+
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

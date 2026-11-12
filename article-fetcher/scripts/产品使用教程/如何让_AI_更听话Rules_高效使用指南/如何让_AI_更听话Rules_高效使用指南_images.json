@@ -1,0 +1,167 @@
+[
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_gif/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5ibLU5wHmFvpzGaMxOqQRIxTowvibj0goyib9wcibJfNNuHAmjEoghA4ibGQ/640?wx_fmt=gif&from=appmsg#imgIndex=0",
+    "index": 0,
+    "context_before": "本文作者：简瑞，TRAE 技术专家",
+    "context_after": "概述",
+    "width": 1076,
+    "height": 195,
+    "class": "rich_pages wxw-img __bg_gif",
+    "data_type": "gif",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5fIvt2rrDG7vzq3wh7lNTeuNjLOJG2w0ViaEX8nXqundEaAIZjrMoZ5A/640?wx_fmt=png&from=appmsg#imgIndex=1",
+    "index": 1,
+    "context_before": "概述",
+    "context_after": "在 TRAE 过去的版本里，我们支持配置 Project Rules 和 User Rules。但随着项目复杂度提升、任务难度增加，大家很快会遇到一个现实问题：",
+    "width": 1080,
+    "height": 10,
+    "class": "rich_pages wxw-img",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5tG2ofgGTB7ovoJVwcg0T1zZZdHhAor3Xt4ALb9ZkUHYWXzRQt2gLhg/640?wx_fmt=png&from=appmsg#imgIndex=2",
+    "index": 2,
+    "context_before": "在 TRAE 过去的版本里，我们支持配置 Project Rules 和 User Rules。但随着项目复杂度提升、任务难度增加，大家很快会遇到一个现实问题：",
+    "context_after": "规则写短了不够用；",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5LpFUZ5joDUe36xdekxo24GB1pdUyQQ1BgfyVhDa6bTHuCKZFSniaWAw/640?wx_fmt=png&from=appmsg#imgIndex=3",
+    "index": 3,
+    "context_before": "规则写短了不够用；",
+    "context_after": "更麻烦的是——你很难控制它在“什么时候该生效、什么时候不该生效”。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5oGHGciaUjmnCBeFr3uU3pTcNuy8u2LFDnEcib5PW26XF0p9KKzBRMmWQ/640?wx_fmt=png&from=appmsg#imgIndex=4",
+    "index": 4,
+    "context_before": "更麻烦的是——你很难控制它在“什么时候该生效、什么时候不该生效”。",
+    "context_after": "TRAE 的 Rules 能力升级后引入了多规则管理（便于拆分与维护）与精细化生效（便于控制使用范围与时机） ，同时支持导入 AGENTS.md / CLAUDE.md（降低迁移成本）。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5nuPwqVayiaIKXKhRD5icak7DKSEYaeV7WkzRf5FAXIN3w2lzCVCyfc0Q/640?wx_fmt=png&from=appmsg#imgIndex=5",
+    "index": 5,
+    "context_before": "TRAE 的 Rules 能力升级后引入了多规则管理（便于拆分与维护）与精细化生效（便于控制使用范围与时机） ，同时支持导入 AGENTS.md / CLAUDE.md（降低迁移成本）。",
+    "context_after": "为什么一条 Rule 写太长会“反噬”效果？",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5NyicNeDhzdD5p3mGb5yD6fCteGvzvbTGiaEsia9WNN5bdDdWouzicf1lwA/640?wx_fmt=png&from=appmsg#imgIndex=6",
+    "index": 6,
+    "context_before": "为什么一条 Rule 写太长会“反噬”效果？",
+    "context_after": "4 种生效方式怎么选，才能既听话又不打架？",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5cPqZxxYutsnFr9wdcCaF0grhxyzaSJXoOHA58j3XGicvlHxTp4RNYbA/640?wx_fmt=png&from=appmsg#imgIndex=7",
+    "index": 7,
+    "context_before": "4 种生效方式怎么选，才能既听话又不打架？",
+    "context_after": "如何复用 AGENTS.md / CLAUDE.md，降低迁移成本？",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5eIKf4c5iaibo2zX9jy31uBpVhpDTl8SbT6Fbial6qjuIPBrl3XymCjBvA/640?wx_fmt=png&from=appmsg#imgIndex=8",
+    "index": 8,
+    "context_before": "如何复用 AGENTS.md / CLAUDE.md，降低迁移成本？",
+    "context_after": "很多人第一次写 Rule 都会经历同一条路：“我要把经验都写进去，越全越好。”",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5roia7OcPibFFOe8J5VDTDoMZ6EHoeSM4oshRYpFYcOYeNxthBHUB8BSA/640?wx_fmt=png&from=appmsg#imgIndex=9",
+    "index": 9,
+    "context_before": "很多人第一次写 Rule 都会经历同一条路：“我要把经验都写进去，越全越好。”",
+    "context_after": "1. 规模问题：越写越长，维护成本指数级上升",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_gif/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5a0pE6enIeBoRSBJico6KbIMNeQw9dicKH3ZrR6nVMWLrS1Db7HxfukeQ/640?wx_fmt=gif&from=appmsg#imgIndex=10",
+    "index": 10,
+    "context_before": "1. 规模问题：越写越长，维护成本指数级上升",
+    "context_after": "想改一点点内容，要在文件里翻半天",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder __bg_gif",
+    "data_type": "gif",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5PZKtYNLhBicWToaeGxEynAg7sByiaPfkdvsHLTNWfE0fSqblAbJ1CXgg/640?wx_fmt=png&from=appmsg#imgIndex=11",
+    "index": 11,
+    "context_before": "想改一点点内容，要在文件里翻半天",
+    "context_after": "规则更新很频繁时，内容会迅速腐化",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx51qLjw923iasGvAKud3hTU0qDvhdLvmRCDwxonntgOKwcEnCmP1iaZXuQ/640?wx_fmt=png&from=appmsg#imgIndex=12",
+    "index": 12,
+    "context_before": "规则更新很频繁时，内容会迅速腐化",
+    "context_after": "比如你把“React 组件规范”和“Git Commit Message 模板”写在同一条 Rule 里。当你只是在问一个 UI 问题时，模型可能突然开始输出 commit message 结构；当你要写提交信息时，模型又开始强调 hooks 的最佳实践。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx51ViaC5wGTomGqgB3ES026KApCA7iamcRzoluZroFgkZLW9bJlfXXywmg/640?wx_fmt=png&from=appmsg#imgIndex=13",
+    "index": 13,
+    "context_before": "比如你把“React 组件规范”和“Git Commit Message 模板”写在同一条 Rule 里。当你只是在问一个 UI 问题时，模型可能突然开始输出 commit message 结构；当你要写提交信息时，模型又开始强调 hooks 的最佳实践。",
+    "context_after": "3. 时机问题：你很难决定“这段规则什么时候该生效”",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/oQ0houcyEicjP5uI5B8ToxpAPgwp9bwx5ESrgc5LWCU7JGiaUSzm6CPicyfPaXrGd1Ee1p1ugY2QU71ZkRORpfAIw/640?wx_fmt=png&from=appmsg#imgIndex=14",
+    "index": 14,
+    "context_before": "3. 时机问题：你很难决定“这段规则什么时候该生效”",
+    "context_after": "规则到处乱入，造成噪音与冲突",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder",
+    "data_type": "png",
+    "alt": "图片"
+  }
+]

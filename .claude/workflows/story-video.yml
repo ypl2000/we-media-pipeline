@@ -1,0 +1,626 @@
+export const meta = {
+  name: 'story-video',
+  description: '只做视频的独立入口：输入已有文章路径或主题，跑 Storyboard（4-6 镜，字段对齐 Docs/storyboard-spec.md）→ Review-Storyboard（只审旁白五问，最多重写 2 轮）→ 产出 08_eac_handoff.json 交给 EAC MCP 工具执行。不调用本地渲染脚本，不产出 07_video.mp4。args.duration 默认 30 秒。',
+  phases: [
+    { title: 'Storyboard' },
+    { title: 'Review-Storyboard' },
+    { title: 'Handoff' },
+  ],
+}
+
+// 本入口只做视频：args.topic 可以是已有文章路径，也可以是一个主题。
+// args.duration 默认 30 秒；≤12s 是模板线，>12s 是 EAC 精品线（13-19s 按约定并到 EAC）。
+const TOPIC = String(args.topic || '').trim()
+if (!TOPIC) throw new Error('缺少 args.topic（已有文章路径或主题）')
+const DURATION = Number(args.duration) > 0 ? Math.round(Number(args.duration)) : 30
+const ROUTE = DURATION <= 12 ? 'template' : 'eac'
+const VO_CHARS_PER_SEC = 5.5
+const TARGET_CHARS = Math.round(DURATION * VO_CHARS_PER_SEC)
+// 5.5 字/秒 ±8% → [5.06, 5.94] 字/秒
+const CHAR_FLOOR = Math.round(TARGET_CHARS * 0.92)
+const CHAR_CEIL = Math.round(TARGET_CHARS * 1.08)
+
+const _cnCount = (s) => (String(s || '').match(/[\u4e00-\u9fff]/g) || []).length
+// 视频号标题/描述按「汉字算 1、数字和英文各算半个」折算长度
+const _weightedLen = (s) => [...String(s || '')].reduce((n, ch) => {
+  if (/[\u4e00-\u9fff]/.test(ch)) return n + 1
+  if (/\s/.test(ch)) return n
+  return n + 0.5
+}, 0)
+const _short = (s, n = 36) => {
+  const t = String(s || '').replace(/\s+/g, ' ').trim()
+  const chars = [...t]
+  return chars.length > n ? chars.slice(0, n).join('') + '…' : t
+}
+
+function checkStoryboard(sb, duration, route) {
+  const problems = []
+  if (!sb || typeof sb !== 'object') return ['未返回可解析的 storyboard 对象']
+
+  if (!String(sb.title || '').trim()) problems.push('title 为空（内部标题，不念不上屏）')
+  if (_weightedLen(sb.publish_title) === 0) problems.push('publish_title 为空')
+  else if (_weightedLen(sb.publish_title) > 15) {
+    problems.push(`publish_title 折算 ${_weightedLen(sb.publish_title)} 字，超过 15（数字/英文各算半个）`)
+  }
+  if (_weightedLen(sb.publish_desc) === 0) problems.push('publish_desc 为空')
+  else if (_weightedLen(sb.publish_desc) > 20) {
+    problems.push(`publish_desc 折算 ${_weightedLen(sb.publish_desc)} 字，超过 20（数字/英文各算半个）`)
+  }
+  if (String(sb.voice || '') !== 'mambo-zh') {
+    problems.push(`voice 必须是 mambo-zh（本地曼波中文），实际 ${sb.voice || '空'}`)
+  }
+  if (Number(sb.duration_s) !== Number(duration)) {
+    problems.push(`duration_s 必须是 ${duration}，实际 ${sb.duration_s}`)
+  }
+  const expectedRoute = route || (Number(duration) <= 12 ? 'template' : 'eac')
+  if (String(sb.route || '') !== expectedRoute) {
+    problems.push(`route 必须是 ${expectedRoute}（${duration}s），实际 ${sb.route || '空'}`)
+  }
+
+  const scenes = Array.isArray(sb.scenes) ? sb.scenes : []
+  if (scenes.length < 4) problems.push(`scenes 至少 4 镜，实际 ${scenes.length} 镜`)
+  if (scenes.length > 6) problems.push(`scenes 最多 6 镜，实际 ${scenes.length} 镜`)
+  if (scenes.length && scenes[0]?.role !== 'hook') problems.push('第 1 镜 role 必须是 hook')
+  if (scenes.length && scenes[scenes.length - 1]?.role !== 'outro') problems.push('最后一镜 role 必须是 outro')
+
+  const firstNarration = String(scenes[0]?.narration || '').trimStart()
+  if (scenes.length && /^[0-9０-９%％]/.test(firstNarration)) {
+    problems.push('第 1 镜 narration 不许以数字或百分号开头，先交代人和场景')
+  }
+
+  const ids = []
+  let totalDuration = 0
+  let totalChars = 0
+  for (let i = 0; i < scenes.length; i++) {
+    const scene = scenes[i]
+    const label = `第 ${i + 1} 镜`
+    const id = String(scene?.id || '').trim()
+    ids.push(id)
+    if (!/^[a-z][a-z0-9_]*$/.test(id)) problems.push(`${label} id 必须是小写英文（可带数字/下划线），实际「${id}」`)
+    if (!['hook', 'body', 'outro'].includes(String(scene?.role || ''))) {
+      problems.push(`${label} role 必须是 hook/body/outro`)
+    }
+    const visualType = String(scene?.visual_type || '')
+    if (!['event', 'order', 'chart', 'statement'].includes(visualType)) {
+      problems.push(`${label} visual_type 必须是 event/order/chart/statement`)
+    }
+    if (i > 0 && String(scene?.visual_type || '') === String(scenes[i - 1]?.visual_type || '')) {
+      problems.push(`${label} 和上一镜同类 visual_type（${visualType}），相邻两镜必须不同`)
+    }
+
+    const sceneDuration = Number(scene?.duration_s)
+    if (!Number.isFinite(sceneDuration) || sceneDuration <= 0) {
+      problems.push(`${label} duration_s 必须是正数`)
+    } else {
+      totalDuration += sceneDuration
+    }
+
+    const narration = String(scene?.narration || '')
+    if (!narration.trim()) {
+      problems.push(`${label} narration 为空`)
+    } else {
+      const chars = _cnCount(narration)
+      totalChars += chars
+      if (chars < 6) problems.push(`${label} narration 只有 ${chars} 个汉字，至少 6 个`)
+      if (/[0-9０-９%％]/.test(narration)) {
+        problems.push(`${label} narration 含阿拉伯数字或百分号，必须写中文念法`)
+      }
+      if (/[A-Za-z]{2,}/.test(narration)) {
+        problems.push(`${label} narration 含英文串，念不出来；英文名/版本号放到 visual/elements`)
+      }
+    }
+    if (!String(scene?.visual || '').trim()) problems.push(`${label} visual 为空（要一句话讲这屏画什么）`)
+  }
+
+  if (ids.every(Boolean)) {
+    if (new Set(ids).size !== ids.length) problems.push('scenes[].id 有重复')
+    const prefixes = ids.map(id => id.slice(0, 2))
+    if (new Set(prefixes).size !== prefixes.length) problems.push('scenes[].id 的前 2 个字母有重复')
+  }
+
+  if (scenes.length && Math.abs(totalDuration - Number(duration)) > 0.3) {
+    problems.push(`scene.duration_s 合计 ${totalDuration.toFixed(2)}，必须等于 duration_s ${duration}（±0.3）`)
+  }
+
+  // 每 3 镜至少 1 镜有人有动作（event/order），否则整段像 PPT 翻页
+  for (let i = 2; i < scenes.length; i++) {
+    const windowTypes = scenes.slice(i - 2, i + 1).map(s => String(s?.visual_type || ''))
+    if (!windowTypes.includes('event') && !windowTypes.includes('order')) {
+      problems.push(`第 ${i - 1}-${i + 1} 镜连续 3 镜没有 event/order`)
+    }
+  }
+
+  if (totalChars < CHAR_FLOOR || totalChars > CHAR_CEIL) {
+    problems.push(`旁白总汉字数 ${totalChars}，应落在 ${CHAR_FLOOR}-${CHAR_CEIL}（${duration}s × 5.5 字/秒 ±8%）`)
+  }
+
+  const facts = Array.isArray(sb.facts) ? sb.facts : []
+  facts.forEach((f, i) => {
+    const claim = String(f?.claim || '')
+    const source = String(f?.source || '')
+    if (/[0-9０-９]/.test(claim) && !/^https?:\/\//i.test(source)) {
+      problems.push(`facts[${i}] 的 claim「${claim}」带数字但没有 http(s) 来源`)
+    }
+  })
+  return problems
+}
+
+const storyboardSchema = {
+  type: 'object',
+  properties: {
+    success: { type: 'boolean' },
+    file: { type: 'string' },
+    title: { type: 'string' },
+    publish_title: { type: 'string' },
+    publish_desc: { type: 'string' },
+    voice: { type: 'string' },
+    rate: { type: 'string' },
+    duration_s: { type: 'number' },
+    route: { type: 'string' },
+    units_per_sec: { type: 'number' },
+    scenes: {
+      type: 'array',
+      minItems: 4,
+      maxItems: 6,
+      items: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+          role: { type: 'string' },
+          visual_type: { type: 'string' },
+          duration_s: { type: 'number' },
+          narration: { type: 'string' },
+          visual: { type: 'string' },
+          elements: { type: 'string' },
+        },
+        required: ['id', 'role', 'visual_type', 'duration_s', 'narration', 'visual'],
+      },
+    },
+    facts: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          claim: { type: 'string' },
+          source: { type: 'string' },
+          verified: { type: 'boolean' },
+        },
+        required: ['claim'],
+      },
+    },
+  },
+  required: ['success', 'file', 'title', 'publish_title', 'publish_desc', 'voice', 'duration_s', 'route', 'scenes'],
+}
+
+const reviewSchema = {
+  type: 'object',
+  properties: {
+    approved: { type: 'boolean' },
+    answers: {
+      type: 'object',
+      properties: {
+        who: { type: 'string' },
+        when: { type: 'string' },
+        what: { type: 'string' },
+        why: { type: 'string' },
+        so_what: { type: 'string' },
+      },
+      required: ['who', 'when', 'what', 'why', 'so_what'],
+    },
+    missing: { type: 'array', items: { type: 'string' } },
+    issues: { type: 'array', items: { type: 'string' } },
+  },
+  required: ['approved', 'answers', 'missing', 'issues'],
+}
+
+// ─── 目录与输入解析 ──────────────────────────────────────────────────────────
+// 产物默认跟 config.json 的 default_output_dir 走；如果 args.topic 是已有文章，
+// 就直接放在文章同目录（和 03_article.md / 07_video.mp4 放一起），不另建项目夹。
+
+const setup = await agent(
+  `确定项目根目录、输出根目录和本次视频的存放目录，并建好目录。
+
+1. 项目根目录：在仓库里运行 \`git rev-parse --show-toplevel\`，把 stdout 原样记为项目根目录。
+   命令失败（不在 git 仓库里）就返回错误并停止。
+2. 输出根目录：运行（Windows 下用 python，路径含空格要加引号）：
+   python "<项目根目录>/shared/config_loader.py" --get default_output_dir
+   把 stdout 原样作为输出根目录（不要改写、不要加引号）。
+3. 解析输入 "${TOPIC}"：
+   - 如果它是一个已存在的文件（用 Read 或 Test-Path 检查）：
+     article_path = 该文件的完整路径；out_dir = 该文件所在目录（视频产物和文章放一起）。
+   - 如果不存在：把它当主题（article_path 留空）。
+     out_dir = <输出根目录>\\<主题安全目录名>；安全目录名 = 把 \\ / : * ? " < > | 换成 -，截到 40 字。
+4. 用 Test-Path 确认 out_dir 存在，不存在才创建（New-Item -ItemType Directory），不要用 rm。
+5. 返回前确认 out_dir 不在项目根目录内（不在代码仓库里）。
+
+## 返回格式（JSON）
+{
+  "project_root": "项目根目录完整路径",
+  "output_root": "输出根目录完整路径",
+  "out_dir": "本次视频目录完整路径",
+  "article_path": "已有文章完整路径（主题模式为空串）",
+  "input_kind": "article" | "topic"
+}`,
+  {
+    schema: {
+      type: 'object',
+      properties: {
+        project_root: { type: 'string' },
+        output_root: { type: 'string' },
+        out_dir: { type: 'string' },
+        article_path: { type: 'string' },
+        input_kind: { type: 'string' },
+      },
+      required: ['project_root', 'output_root', 'out_dir'],
+    },
+  }
+)
+
+const PROJECT_ROOT = String(setup.project_root || '').trim()
+if (!PROJECT_ROOT) throw new Error('未能确定项目根目录（git rev-parse --show-toplevel 失败）')
+const OUT = String(setup.out_dir || '').trim().replace(/[\\/]+$/, '')
+if (!OUT) throw new Error('未能确定视频输出目录')
+const ARTICLE_PATH = String(setup.article_path || '').trim()
+
+// guard: 产物不许写进代码仓库
+const _norm = (p) => String(p).replace(/\\/g, '/').replace(/\/+$/, '').toLowerCase()
+const _projLower = _norm(PROJECT_ROOT)
+if (_norm(OUT).startsWith(_projLower + '/') || _norm(OUT) === _projLower) {
+  throw new Error(`输出目录不能位于代码仓库内: ${OUT}（仓库: ${PROJECT_ROOT}）`)
+}
+
+const STORYBOARD_FILE = OUT + '\\06_storyboard.json'
+const HANDOFF_FILE = OUT + '\\08_eac_handoff.json'
+const CONTENT_FILE = OUT + '\\06_content.json'
+const NAME = OUT.split(/[\\/]/).pop() || 'story-video'
+log(`Input: ${ARTICLE_PATH ? 'article -> ' + ARTICLE_PATH : 'topic -> ' + TOPIC}`)
+log(`Out dir: ${OUT}`)
+log(`Target: ${DURATION}s / route=${ROUTE}`)
+
+// ─── Phase 1: Storyboard ─────────────────────────────────────────────────────
+
+const _inputBlock = ARTICLE_PATH
+  ? `- 文章: ${ARTICLE_PATH}（事实、人名、时间都以它为准）
+- 已有摘要: ${CONTENT_FILE}（存在就读，用来对齐标题和语气；不存在就忽略）`
+  : `- 输入是主题，不是文章: ${TOPIC}
+- 没有文章可查：不要写没有出处的具体数字、日期、公司名；facts 返回 []
+- 「什么时候」用「最近 / 今年 / 前不久」这类站得住的表述，不要编具体日期`
+
+const _sbRepairBlock = (problems) => (problems?.length
+  ? `\n## 上一版被打回的原因（逐条修掉，别只改措辞）\n${problems.map((p, i) => `${i + 1}. ${p}`).join('\n')}\n\n必须覆盖 ${STORYBOARD_FILE} 重写整份分镜，不要只返回补丁。\n`
+  : '')
+
+const buildStoryboardPrompt = (problems) => `写一条 ${DURATION} 秒竖版短视频的分镜，保存到 ${STORYBOARD_FILE}。
+${_sbRepairBlock(problems)}
+## 输入
+${_inputBlock}
+- 目标时长: ${DURATION} 秒
+- 旁白语速: 曼波中文实测 5.5 字/秒，全片旁白总汉字数应 ≈ ${TARGET_CHARS} 字
+  （允许 ±8%，即 ${CHAR_FLOOR}-${CHAR_CEIL} 个汉字；标点不计入汉字数）
+
+## 先读再写
+1. 有文章就先读文章（和同目录的 06_content.json）；只有主题就直接按主题写。
+2. 先扫文中「有人在做一件事」的段落（测试员、工程师、用户在干嘛），把这种场面排成首镜。
+3. 拆成 4-6 镜：首镜 hook，中间 body，末镜 outro；每镜只讲一件事。
+4. 五问要齐：谁 / 什么时候 / 发生了什么 / 为什么 / 所以呢。
+
+## 字段（严格按 Docs/storyboard-spec.md 的 schema）
+{
+  "title": "内部标题，不念、不上屏",
+  "publish_title": "视频号标题，≤15 个汉字（数字/英文各算半个）",
+  "publish_desc": "视频号描述，≤20 个汉字，补标题没说完的钩子",
+  "voice": "mambo-zh",
+  "rate": "+0%",
+  "duration_s": ${DURATION},
+  "route": "${ROUTE}",
+  "units_per_sec": 5.5,
+  "scenes": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "visual_type": "event",
+      "duration_s": 6,
+      "narration": "纯中文口播，数字写中文念法",
+      "visual": "一句话讲这屏画什么：元素、位置、画面上具体写哪几个标签",
+      "elements": "上屏文字，逗号分隔（可选）"
+    }
+  ],
+  "facts": [
+    { "claim": "41.3%", "source": "https://…", "verified": true }
+  ]
+}
+
+## 硬规则（程序逐条校验，不合规直接打回重写）
+1. scenes 固定 4-6 镜；首镜 role=hook，末镜 role=outro，中间 role=body。
+2. 首镜 narration 第一句必须交代「谁 + 什么时候 + 发生了什么」，不许以数字或百分号开头。
+3. 每镜 narration 至少 6 个汉字，必须是完整口播句；禁止纯数字句。
+4. narration 里零阿拉伯数字、零百分号、零英文串，全部写中文念法：
+   41.3% → 百分之四十一点三；2026 年 → 二零二六年；AI → 人工智能；Gemini 4 Carbon → 双子座四号碳。
+   英文名、版本号、上屏标签只能放到 visual / elements（画面文字 ≠ 旁白）。
+5. 总汉字数 ≈ duration_s × 5.5（落在 ${CHAR_FLOOR}-${CHAR_CEIL}，超出打回）；
+   每镜 narration ≈ 本镜 duration_s × 5.5（0.8-1.2 倍），别让某一镜画面空转或字挤成一团。
+6. 每镜 duration_s > 0，所有 scene.duration_s 加起来必须等于 ${DURATION}（±0.3）。
+7. 禁止相邻两镜 visual_type 相同；任意连续 3 镜至少 1 镜是 event/order（有人、有动作）。
+8. facts 里每个带数字的 claim 必须给 http(s) 来源；没有出处的数字不要写进 narration。
+9. 至少一镜给出因果（含「因为/是因为/之所以」），末镜给出落点（含「所以/以后/接着」）。
+10. publish_title ≤15 字、publish_desc ≤20 字；voice 必须是 mambo-zh；route 填 ${ROUTE}。
+
+## visual_type 怎么选
+- event: 有人在做一件事（优先，最像真实视频）
+- order: 流程 / 步骤 / 时间顺序
+- chart: 只有一个数字关系要看清（少用，别和相邻镜撞类型）
+- statement: 一句结论（少用，别和相邻镜撞类型）
+
+## 写完后按 R1-R7 自查
+- [ ] 首镜 role=hook，第一句有主语、有时间，不以数字开头（R1）
+- [ ] 五问都能在旁白里找到出处，末镜有「所以呢」（R2）
+- [ ] 总汉字数落在 ${CHAR_FLOOR}-${CHAR_CEIL}（R3）
+- [ ] 旁白零阿拉伯数字、零百分号、零英文串（R4）
+- [ ] route=${ROUTE}，镜头时长加总等于 ${DURATION} 秒（R5）
+- [ ] 相邻 visual_type 不同，每 3 镜有人有动作（R6）
+- [ ] 4-6 镜、首 hook 末 outro、id 唯一且前 2 字母不重复（R7）
+
+## 返回格式（JSON）
+{ "success": boolean, "file": "完整路径", "title": "string", "publish_title": "string", "publish_desc": "string", "voice": "mambo-zh", "duration_s": number, "route": "template" | "eac", "scenes": [...], "facts": [...] }
+
+如果文件写失败，抛出错误让流程停止。`
+
+phase('Storyboard')
+const MAX_RETRIES = 3
+let storyboardFile = STORYBOARD_FILE
+let storyboardData = null
+let storyboardProblems = []
+
+for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+  try {
+    const r = await agent(buildStoryboardPrompt(attempt === 1 ? [] : storyboardProblems), { schema: storyboardSchema })
+    if (!r?.success) throw new Error(r?.error || 'Storyboard 生成失败')
+    storyboardData = r
+    storyboardFile = r.file || STORYBOARD_FILE
+    storyboardProblems = checkStoryboard(r, DURATION, ROUTE)
+    if (!storyboardProblems.length) {
+      log(`Storyboard done: ${storyboardFile} (${DURATION}s, ${(r.scenes || []).length} 镜, ${_cnCount((r.scenes || []).map(s => s.narration).join(''))} 字, route=${ROUTE})`)
+      break
+    }
+    log(`Storyboard 硬规则不合规（第 ${attempt} 轮）：${storyboardProblems.join('; ')}`)
+    if (attempt === MAX_RETRIES) {
+      log(`Storyboard 重写 ${MAX_RETRIES - 1} 轮仍不合规，交给 Review-Storyboard 继续审`)
+    }
+  } catch (err) {
+    if (attempt === MAX_RETRIES) throw new Error('Storyboard failed: ' + String(err))
+    log(`Storyboard attempt ${attempt} failed: ${String(err)}`)
+  }
+}
+
+// ─── Phase 2: Review-Storyboard（只审旁白五问） ──────────────────────────────
+// 只把 narration 文本交给 critic：没有画面、没有图、没有标题。
+// 任一问答不上就打回重写，最多 2 轮；两轮后仍有缺口就带风险产出 handoff。
+
+phase('Review-Storyboard')
+const REVIEW_MAX_ROUNDS = 2
+const missingLabels = { who: '谁', when: '什么时候', what: '发生了什么', why: '为什么', so_what: '所以呢' }
+let storyboardApproved = false
+
+const reviewPrompt = (narrationText) => `你是短视频观众。下面只有这条片子的旁白文本：没有画面、没有图、没有标题。
+不要脑补，只根据这些文字回答五个问题，再判断「听完能不能讲清楚」。
+
+## 旁白文本
+${narrationText}
+
+## 五问（每题用一句具体的话回答；答不上就原样写「答不上」）
+1. 谁：这件事说的是谁？
+2. 什么时候：发生在什么时候？
+3. 发生了什么：具体做了什么、出了什么结果？
+4. 为什么：为什么会这样？
+5. 所以呢：观众听完该记住什么？
+
+## 判定
+- 五问里有任何一问答不上、或答出来的只是空泛套话 → approved=false，把对应键放进 missing。
+- 五问都能从旁白里直接答出来 → approved=true，missing 为空数组。
+- 不许把标题/摘要/你的背景知识算进答案：旁白没说的就是没讲清楚。
+
+## 返回格式（JSON）
+{
+  "approved": boolean,
+  "answers": { "who": "...", "when": "...", "what": "...", "why": "...", "so_what": "..." },
+  "missing": ["who" | "when" | "what" | "why" | "so_what"],
+  "issues": ["具体缺什么信息、应该补在哪一镜"]
+}`
+
+const rewritePrompt = (round, answers, missing, issues, hardProblems) => `观众只看了旁白，说这条片子没讲清楚。请重写 ${STORYBOARD_FILE}，把缺的要素补进 narration。
+
+## 这是第 ${round} 轮重写（最多 ${REVIEW_MAX_ROUNDS} 轮）
+## 五问缺口（补进具体某一镜的 narration，不要只在结尾喊口号）
+${missing.length ? missing.map(m => {
+  const label = missingLabels[m] || m
+  const ans = String(answers?.[m] || '').trim()
+  return `- 缺「${label}」${ans ? `：观众听到的是「${_short(ans)}」，信息不够` : '：旁白里没有能直接答出的内容'}`
+}).join('\n') : '- （critic 没有标注具体缺口，按下面的意见补）'}
+
+## critic 的具体意见
+${(issues.length ? issues : ['（无）']).map((s, i) => `${i + 1}. ${s}`).join('\n')}
+
+## 硬规则问题（程序校验出来的，必须一起修）
+${(hardProblems.length ? hardProblems : ['（无）']).map((s, i) => `${i + 1}. ${s}`).join('\n')}
+
+${buildStoryboardPrompt(hardProblems)}
+`
+
+let pendingHardProblems = storyboardProblems
+for (let round = 0; round <= REVIEW_MAX_ROUNDS; round++) {
+  const scenes = Array.isArray(storyboardData.scenes) ? storyboardData.scenes : []
+  // 只给 narration：不传画面、不传图片、不传标题，避免 critic 靠画面或标题脑补
+  const narrationText = scenes.map((s, i) => `${i + 1}. ${String(s?.narration || '')}`).join('\n')
+
+  let verdict = null
+  try {
+    verdict = await agent(reviewPrompt(narrationText), { schema: reviewSchema })
+  } catch (err) {
+    log(`Review-Storyboard 审查调用失败：${String(err)} — 跳过闸门继续`)
+    break
+  }
+
+  const answers = verdict?.answers || {}
+  const missing = Array.isArray(verdict?.missing) ? verdict.missing : []
+  const issues = Array.isArray(verdict?.issues) ? verdict.issues : []
+  const hardProblems = checkStoryboard(storyboardData, DURATION, ROUTE)
+
+  if (verdict?.approved && !hardProblems.length) {
+    storyboardApproved = true
+    log(`Review-Storyboard 通过：谁=${_short(answers.who)}；什么时候=${_short(answers.when)}；发生了什么=${_short(answers.what)}；为什么=${_short(answers.why)}；所以呢=${_short(answers.so_what)}`)
+    break
+  }
+
+  if (verdict?.approved) {
+    log(`Review-Storyboard：五问齐了，但硬规则还有 ${hardProblems.length} 项不合规，打回重写`)
+  } else {
+    log(`Review-Storyboard 第 ${round + 1} 次审查打回：缺 ${missing.map(m => missingLabels[m] || m).join('、') || '（未标注）'}；${issues.join('; ') || '（无具体意见）'}`)
+  }
+
+  if (round === REVIEW_MAX_ROUNDS) {
+    log(`Review-Storyboard 已重写 ${REVIEW_MAX_ROUNDS} 轮仍有缺口，带风险产出 handoff（review 里会标注）`)
+    break
+  }
+
+  let rewritten = null
+  try {
+    rewritten = await agent(rewritePrompt(round + 1, answers, missing, issues, hardProblems), { schema: storyboardSchema })
+  } catch (err) {
+    log(`Storyboard 重写第 ${round + 1} 轮失败：${String(err)} — 停止重写`)
+    break
+  }
+  if (!rewritten?.success) {
+    log(`Storyboard 重写第 ${round + 1} 轮未成功：${rewritten?.error || 'unknown'} — 停止重写`)
+    break
+  }
+  storyboardData = rewritten
+  storyboardFile = rewritten.file || STORYBOARD_FILE
+  pendingHardProblems = checkStoryboard(rewritten, DURATION, ROUTE)
+  if (pendingHardProblems.length) log(`重写后仍有硬规则问题：${pendingHardProblems.join('; ')}`)
+}
+storyboardProblems = pendingHardProblems
+
+// ─── Phase 3: Handoff（只写文件，不调渲染） ──────────────────────────────────
+// 本入口没有 EAC MCP 工具，也没有本地模板渲染；handoff 是唯一产物。
+// 每镜 path 一律 pending：本入口没有配图阶段，需要人在 EAC 里补素材。
+
+phase('Handoff')
+let handoffFile = ''
+
+const MOTION_BY_VISUAL = {
+  event: 'zoom-in',
+  order: 'pan-right',
+  chart: 'zoom-in',
+  statement: 'zoom-out',
+}
+
+let cursor = 0
+const clips = (storyboardData.scenes || []).map((scene, i) => {
+  const sceneDuration = Number(scene?.duration_s) || 0
+  const clip = {
+    shot_id: scene?.id ?? i + 1,
+    path: 'pending',
+    start: Number(cursor.toFixed(3)),
+    duration: Math.max(0.1, Number(sceneDuration.toFixed(3))),
+    motion: MOTION_BY_VISUAL[scene?.visual_type] || 'zoom-in',
+    caption: scene?.narration || '',
+    narration: scene?.narration || '',
+    vo: scene?.narration || '',
+    visual: scene?.visual || '',
+    elements: scene?.elements || '',
+    visual_type: scene?.visual_type || '',
+  }
+  cursor += sceneDuration
+  return clip
+})
+
+const handoff = {
+  project: NAME,
+  engine: ROUTE === 'eac' ? 'eac' : 'template-handoff',
+  route: ROUTE,
+  duration_s: DURATION,
+  title: storyboardData.title || '',
+  publish_title: storyboardData.publish_title || '',
+  publish_desc: storyboardData.publish_desc || '',
+  voice: storyboardData.voice || 'mambo-zh',
+  rate: storyboardData.rate || '+0%',
+  input: {
+    topic: TOPIC,
+    article: ARTICLE_PATH || '',
+    kind: ARTICLE_PATH ? 'article' : 'topic',
+  },
+  source: {
+    storyboard: STORYBOARD_FILE,
+    content: CONTENT_FILE,
+  },
+  clips,
+  vo_script: (storyboardData.scenes || []).map(s => String(s?.narration || '')).join(''),
+  facts: Array.isArray(storyboardData.facts) ? storyboardData.facts : [],
+  review: {
+    storyboard_approved: storyboardApproved,
+    problems: storyboardProblems,
+  },
+  instructions: ROUTE === 'eac'
+    ? [
+        '这是交给 EAC 设计世界（MCP 工具）的镜头清单，本入口不执行本地渲染，也不产出 07_video.mp4。',
+        '在 EAC 会话里按 clips 逐镜建时间线：path 全部是 pending，需要先找素材或生成画面；start/duration 是时间线绝对秒数。',
+        'caption 直接作为字幕，narration 是曼波中文配音文本（voice ID: mambo-zh）；facts 里的来源用于画面角标/口播核对。',
+      ]
+    : [
+        `分镜 route=template（${DURATION}s ≤ 12s），本入口仍产出 handoff，但不渲染本地模板。`,
+        '要出 9 秒模板成片，请用 run-pipeline 的 Video 阶段（06_content.json）或 tutorial-video.yml。',
+        'path 全部是 pending，需要先准备素材；start/duration 是时间线绝对秒数。',
+      ],
+}
+
+const writeResult = await agent(
+  `把下面这份 JSON 原样写入 ${HANDOFF_FILE}，一个字符都不要改。
+
+## JSON
+${JSON.stringify(handoff, null, 2)}
+
+## 规则
+- 用 Write 工具写，UTF-8，2 空格缩进。
+- 不要改字段、不要补字段、不要重新生成内容。
+- 写完用 Read 读一遍，确认是合法 JSON。
+
+## 返回格式（JSON）
+{ "success": boolean, "file": "完整路径", "error": "错误信息（如果有）" }`,
+  {
+    schema: {
+      type: 'object',
+      properties: {
+        success: { type: 'boolean' },
+        file: { type: 'string' },
+        error: { type: 'string' },
+      },
+      required: ['success'],
+    },
+  }
+)
+
+if (!writeResult?.success) throw new Error(writeResult?.error || '写 08_eac_handoff.json 失败')
+handoffFile = writeResult.file || HANDOFF_FILE
+
+log(`Handoff: ${handoffFile}（${clips.length} 镜 / ${DURATION}s，path 全部 pending）`)
+if (ROUTE === 'eac') {
+  log(`进入 EAC 精品线：本仓库只有 MCP 工具（eac_status / eac_project_create / eac_timeline_update / eac_job_submit），没有 EAC 本地 CLI。`)
+  log(`下一步由人工/Agent 在 EAC 设计世界会话里按 handoff 建项目、录画面、配音、调色、渲染；本入口不产出 07_video.mp4。`)
+  if (DURATION < 20) log(`注意：${DURATION}s 落在 13-19s 灰区，按约定并到 EAC 精品线，渲染前建议补到 20s 以上。`)
+} else {
+  log(`分镜 route=template（${DURATION}s ≤ 12s）：本入口只产出 handoff；要出模板成片请用 run-pipeline 的 Video 阶段或 tutorial-video.yml。`)
+}
+
+return {
+  success: true,
+  schema_version: '1.0',
+  output_dir: OUT,
+  topic: TOPIC,
+  article_file: ARTICLE_PATH,
+  storyboard_file: storyboardFile,
+  storyboard_approved: storyboardApproved,
+  storyboard_problems: storyboardProblems,
+  route: ROUTE,
+  duration_s: DURATION,
+  eac_handoff_file: handoffFile,
+}

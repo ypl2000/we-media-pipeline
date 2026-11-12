@@ -1,0 +1,17 @@
+{
+  "content_version": "1.0",
+  "source": "news_article",
+  "main_title": "马斯克开源X推荐算法：6小时斩获1.6k Star",
+  "sub_title": "算法黑箱时代终结了？",
+  "images": [
+    "images/img01.jpg",
+    "images/img02.jpg",
+    "images/img03.jpg"
+  ],
+  "text_sections": [
+    "2026年1月，马斯克在X平台扔下一枚重磅炸弹：X的核心推荐算法正式开源。",
+    "这次开源的，是整个内容分发的完整链路：排序机制、权重规则、去重算法。",
+    "马斯克承诺每四周更新一次代码，这意味着X的推荐系统将成为持续进化的开源项目。"
+  ],
+  "outro_text": "关注 AI不够酷｜获取更多AI资讯"
+}

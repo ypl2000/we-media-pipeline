@@ -1,0 +1,112 @@
+[
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M0M2LxLjvZjz1BBselwQr9LWYVnYldibyQQ7E5LaPeBx56ZAXM9l5rbqduor6KHy6xY61iarrPib34P4bXOykvjsZETOevic1RV92EoWPKVcNqU/640?wx_fmt=png&from=appmsg#imgIndex=0",
+    "index": 0,
+    "context_before": "之前开源的自动拆解开源项目的 /howPrompt 命令深受喜爱，帮助很多 PM 学习了很多 AI 开源项目工程的最佳实践。",
+    "context_after": "很多人用了以后问：能不能拆Skills？",
+    "width": 1080,
+    "height": 739,
+    "class": "rich_pages wxw-img js_darkmode__4",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M0M2LxLjvZiaEgTKbud3qvuWiaDuibHmGqSANYa5QWyJ7HYwCicNBRmwvaqNTUTyIhUcqELFcL7CnFQNP1e4eEvFUnicDndVRpbuDUyQIqBmnNl4/640?wx_fmt=png&from=appmsg#imgIndex=1",
+    "index": 1,
+    "context_before": "很多人用了以后问：能不能拆Skills？",
+    "context_after": "Skills 才是现在最值得学的东西。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__10",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_jpg/M0M2LxLjvZiaD84Agqamum2412B0nyBNlloD8RW2Y5wsy7IkQ2QQ2sWs6Fawc8CuWCcfj251yy5Fzz1Yj2woyfTklqtKDVmm6Bz1cJOxGP8s/640?wx_fmt=jpeg&from=appmsg#imgIndex=2",
+    "index": 2,
+    "context_before": "Skills 才是现在最值得学的东西。",
+    "context_after": "一条命令下去，Agent 会自动完成 8 个阶段 的深度分析，输出一份几千字的产品分析报告：",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__14",
+    "data_type": "jpeg",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M0M2LxLjvZhEib38pTeKW3ogEdqyL2tORBUq323O9AfmJUOctYE9pib0FKGIO8y4xef39USbiap33Qlia2hcKiahCIiaClAXGQCJdGs9mCUo6ib4ls/640?wx_fmt=png&from=appmsg#imgIndex=3",
+    "index": 3,
+    "context_before": "一条命令下去，Agent 会自动完成 8 个阶段 的深度分析，输出一份几千字的产品分析报告：",
+    "context_after": "痛点挖掘——不看文档自述，从实现细节反推真实痛点",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__19",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M0M2LxLjvZjjMs8mPFnvUqtv5t8jL2DCVPyDZaO6Iqr33piaicnE7jRc5icwZ5ScdTn13xc9j7ZqgbG9by0ElQLGR2aba5F8pz20IswicF6IjeM/640?wx_fmt=png&from=appmsg#imgIndex=4",
+    "index": 4,
+    "context_before": "痛点挖掘——不看文档自述，从实现细节反推真实痛点",
+    "context_after": "脚本设计拆解——原子化程度、场景覆盖、接口设计",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__27",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M0M2LxLjvZhXRvKiamYhmm7FZdNM9biaialFsdcIdFfgEbQE7ejP7edY4gLcamETspyEFLnmva4Nr0cAKPhO8vVl5Z10RyIDeJvm4OQowuVY2g/640?wx_fmt=png&from=appmsg#imgIndex=5",
+    "index": 5,
+    "context_before": "脚本设计拆解——原子化程度、场景覆盖、接口设计",
+    "context_after": "资产设计拆解——模板复用、品牌一致性",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__30",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M0M2LxLjvZgzNicutOicE3hZOUmRIS1QSvI8RDoLr9XeusnNIrYBKUhsQIrgeb1am0IRBKXAQnc1IpNTn7AkKSbfXImk7IgiaIz6pJ8CquGhD8/640?wx_fmt=png&from=appmsg#imgIndex=6",
+    "index": 6,
+    "context_before": "资产设计拆解——模板复用、品牌一致性",
+    "context_after": "综合评估——5 个维度打分 + 最佳实践总结",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__31",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M0M2LxLjvZiaRHuDu6Jpgoov3PwQD3LdfYlL6I5uRFOvU0hZHjBicXdEWLz76mDZQviamOqFkhDArLgaMNj8CR3Nps2aNw7Rrlx2GqgiaD5wVx8/640?wx_fmt=png&from=appmsg#imgIndex=7",
+    "index": 7,
+    "context_before": "综合评估——5 个维度打分 + 最佳实践总结",
+    "context_after": "拆解官方的skill-creator",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__36",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/mmbiz_png/M0M2LxLjvZhVGoPH3SVjkCJ6WE74jDrlmJzeATerh6IciaicibttH1J10VqmdicdYKsj0sozu17az5TopWw8Osn7nUXz3jUyFa5LtI5ia5hbNVaI/640?wx_fmt=png&from=appmsg#imgIndex=8",
+    "index": 8,
+    "context_before": "拆解官方的skill-creator",
+    "context_after": "去年我写 /howPrompt 的时候说过：产品经理想掌握AI实战能力，一定要到真正的项目里去学。",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__38",
+    "data_type": "png",
+    "alt": "图片"
+  },
+  {
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/M0M2LxLjvZgFtx960ibjmDKpDwslsSVfxguZHZUQAOC6kyw0cIricb19audKVVEOIjIz4d7PDLYg0uGDqz9xWtH2urbjZmibeH8ZB9SOrGbE6U/640?wx_fmt=png&from=appmsg#imgIndex=9",
+    "index": 9,
+    "context_before": "去年我写 /howPrompt 的时候说过：产品经理想掌握AI实战能力，一定要到真正的项目里去学。",
+    "context_after": "Skills 是 Agent 生态里最值得研究的东西。一个好的 Skill，背后是一整套产品设计思维：",
+    "width": 1,
+    "height": 1,
+    "class": "rich_pages wxw-img js_img_placeholder wx_img_placeholder js_darkmode__39",
+    "data_type": "png",
+    "alt": "图片"
+  }
+]
